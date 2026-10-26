@@ -13,7 +13,7 @@ The hosted measurement service behind the [voice-profile](https://github.com/gen
 | `analyze_writing` | Measures ten surface features of each writing sample (sentence length and variation, short and long sentence shares, contractions, first and second person, questions, paragraph length). With 8+ unlabeled samples it also suggests whether the writer has two distinct modes. |
 | `build_voice_profile` | Turns labeled samples into a profile: a working range per feature, per writing mode, plus a cross-check of how distinct the modes are. Returns the profile for the user to save. |
 | `check_draft` | Scores a draft against one mode of a saved profile. Pass or fail per feature, which way to move, and any banned words. |
-| `compare_to_authors` | Compares a sample, or a profile, with 16 public-domain authors on measured style, and returns the closest authors and the closest author per feature. |
+| `compare_to_authors` | Compares a sample, or a profile, with 27 public-domain authors, fiction and non-fiction, on measured style, and returns the closest authors and the closest author per feature. |
 
 All four tools are read-only (`readOnlyHint: true`, `destructiveHint: false`, `openWorldHint: false`).
 
@@ -24,7 +24,14 @@ All four tools are read-only (`readOnlyHint: true`, `destructiveHint: false`, `o
 
 ## The author library
 
-`api/_core/authors.json` holds measured numbers, and no text, for 16 public-domain works from Project Gutenberg: Twain, Austen, Dickens, Emerson, Thoreau, Wilde, Douglass, Wollstonecraft, Paine, Franklin, Melville, Shelley, Conan Doyle, Chesterton, Poe and Swift. Each book is cut into chunks of about 1,500 words and measured with the same code as everything else.
+`api/_core/authors.json` holds measured numbers, and no text, for 27 public-domain works from Project Gutenberg.
+
+- **Fiction:** Austen, Dickens, Wilde, Melville, Shelley, Conan Doyle, Poe and Swift.
+- **Essays and lectures:** Emerson, Wollstonecraft, Paine, Chesterton, Du Bois and William James.
+- **Memoir:** Twain, Thoreau, Douglass, Franklin, Booker T. Washington, Helen Keller and Jane Addams.
+- **Advice and business:** Arnold Bennett, Samuel Smiles, Emily Post, Frederick Winslow Taylor, Henry Ford and Andrew Carnegie.
+
+The last four groups are non-fiction, so a blog post, memo or advice piece has prose in its own register to sit near, not just novels. Each book is cut into chunks of about 1,500 words and measured with the same code as everything else.
 
 Rebuild it with `python3 tools/build_authors.py <cache-dir>`.
 

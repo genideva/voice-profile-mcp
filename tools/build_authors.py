@@ -37,6 +37,18 @@ WORKS = [
     ("G. K. Chesterton", "Orthodoxy", 1908, "essay", 130),
     ("Edgar Allan Poe", "The Works of Edgar Allan Poe, Volume 2", 1845, "fiction", 2148),
     ("Jonathan Swift", "Gulliver's Travels", 1726, "satire", 829),
+    # Non-fiction in a plainer, more direct register: advice, business, lectures, memoir.
+    ("Arnold Bennett", "How to Live on 24 Hours a Day", 1910, "advice", 2274),
+    ("Samuel Smiles", "Self-Help", 1859, "advice", 935),
+    ("Emily Post", "Etiquette", 1922, "advice", 14314),
+    ("William James", "Talks to Teachers on Psychology", 1899, "lecture", 16287),
+    ("Frederick Winslow Taylor", "The Principles of Scientific Management", 1911, "business", 6435),
+    ("Henry Ford", "My Life and Work", 1922, "business memoir", 7213),
+    ("Andrew Carnegie", "Autobiography of Andrew Carnegie", 1920, "business memoir", 17976),
+    ("Booker T. Washington", "Up from Slavery", 1901, "memoir", 2376),
+    ("Helen Keller", "The Story of My Life", 1903, "memoir", 2397),
+    ("Jane Addams", "Twenty Years at Hull-House", 1910, "memoir", 1325),
+    ("W. E. B. Du Bois", "The Souls of Black Folk", 1903, "essay", 408),
 ]
 CHUNK_WORDS = 1500
 MAX_CHUNKS = 40

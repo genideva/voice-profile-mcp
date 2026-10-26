@@ -76,10 +76,11 @@ TOOLS = [
     {
         "name": "compare_to_authors",
         "title": "Compare to authors",
-        "description": "Compare a writing sample, or one register of a saved profile, with a fixed library of 16 "
-                       "public-domain authors (Twain, Austen, Dickens, Emerson, Thoreau, Wilde, Douglass, and others) "
+        "description": "Compare a writing sample, or one register of a saved profile, with a fixed library of %d "
+                       "public-domain authors, fiction and non-fiction (Twain, Austen, Dickens, Emerson, Wilde, "
+                       "Douglass, Arnold Bennett, Helen Keller, William James, and others) "
                        "on measured style features. Returns the closest authors and the closest author per feature. "
-                       "Compares style only, never personality.",
+                       "Compares style only, never personality." % len(vt.AUTHORS["authors"]),
         "inputSchema": {"type": "object", "properties": {
             "text": {"type": "string", "description": "A writing sample of at least five sentences."},
             "profile": PROFILE_SCHEMA,
