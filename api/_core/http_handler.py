@@ -56,7 +56,7 @@ class Handler(BaseHTTPRequestHandler):
     def do_GET(self):
         p = self._path()
         if p == "/.well-known/openai-apps-challenge":
-            token = os.environ.get("OPENAI_APPS_CHALLENGE", "")
+            token = os.environ.get("OPENAI_APPS_CHALLENGE", "").strip()
             return self._send(200 if token else 404, token.encode(), "text/plain")
         if p in ("/", "/api/mcp", "/mcp"):
             if p == "/":
