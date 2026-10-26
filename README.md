@@ -2,6 +2,8 @@
 
 The hosted measurement service behind the [voice-profile](https://github.com/genideva/voice-profile) plugin, for ChatGPT. It's a small, stateless [MCP](https://modelcontextprotocol.io) server. The chat model leads the conversation, and this server does the counting, so the numbers are exact rather than estimated.
 
+**Live endpoint:** `https://voice-profile-mcp.vercel.app/mcp` (streamable HTTP, no authentication).
+
 **It stores nothing.** Every request is measured in memory and the result is returned. No database, no files, no request logging.
 
 ## Tools
@@ -40,6 +42,14 @@ python3 -m unittest discover tests
 ```
 
 There are no dependencies: standard-library Python only.
+
+**Try it from any MCP client:**
+
+```bash
+npx @modelcontextprotocol/inspector --cli https://voice-profile-mcp.vercel.app/mcp --transport http --method tools/list
+```
+
+In ChatGPT, it comes bundled with the Voice Profile plugin, so there's nothing to connect by hand.
 
 **Deploying (Vercel):** `api/mcp.py` is the function and `vercel.json` routes `/mcp` and `/.well-known/openai-apps-challenge` to it. To pass OpenAI's domain verification, set the environment variable `OPENAI_APPS_CHALLENGE` to the token from the plugin dashboard.
 

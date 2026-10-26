@@ -1,6 +1,6 @@
 # Privacy policy: voice-profile measurement service
 
-**Effective:** on first deployment · **Applies to:** the hosted MCP server that ChatGPT calls for the Voice Profile plugin.
+**Effective:** 26 October 2026 · **Applies to:** the hosted MCP server that ChatGPT calls for the Voice Profile plugin.
 
 ## What the service receives
 
