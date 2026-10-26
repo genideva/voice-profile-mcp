@@ -49,6 +49,17 @@ WORKS = [
     ("Helen Keller", "The Story of My Life", 1903, "memoir", 2397),
     ("Jane Addams", "Twenty Years at Hull-House", 1910, "memoir", 1325),
     ("W. E. B. Du Bois", "The Souls of Black Folk", 1903, "essay", 408),
+    # Technology, finance, medicine and biography.
+    ("Charles Babbage", "On the Economy of Machinery and Manufactures", 1832, "technology", 4238),
+    ("Frank Lewis Dyer and Thomas Commerford Martin", "Edison: His Life and Inventions", 1910, "technology biography", 820),
+    ("Edwin Lefevre", "Reminiscences of a Stock Operator", 1923, "finance", 60979),
+    ("Walter Bagehot", "Lombard Street", 1873, "finance", 4359),
+    ("Charles Mackay", "Extraordinary Popular Delusions and the Madness of Crowds", 1841, "finance", 24518),
+    ("Florence Nightingale", "Notes on Nursing", 1859, "medical", 12439),
+    ("Oliver Wendell Holmes Sr.", "Medical Essays, 1842-1882", 1883, "medical", 2700),
+    ("Lytton Strachey", "Eminent Victorians", 1918, "biography", 2447),
+    ("James Boswell", "The Life of Samuel Johnson", 1791, "biography", 1564),
+    ("Ida M. Tarbell", "The Early Life of Abraham Lincoln", 1896, "biography", 57555),
 ]
 CHUNK_WORDS = 1500
 MAX_CHUNKS = 40
