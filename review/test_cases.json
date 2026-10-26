@@ -1,0 +1,52 @@
+{
+  "_note": "Draft review cases for the OpenAI submission. Run each one with the deployed plugin before submitting; adjust prompts to match what actually works.",
+  "positive": [
+    {
+      "description": "Measure a user's own pre-AI writing",
+      "prompt": "Here are three essays I wrote in 2018, before I used any AI tools. Measure my writing style. [paste three essays]",
+      "tools_triggered": ["analyze_writing"],
+      "expected_behavior": "Asks or confirms that AI did not help write each piece, calls analyze_writing with ai_touched='no', and reports measured features such as sentence length, contractions per 1,000 words and question share as exact numbers."
+    },
+    {
+      "description": "Build a profile with two writing modes",
+      "prompt": "These four are opinion pieces and these four are personal essays, all written by me before AI. Build my voice profile. [paste eight pieces]",
+      "tools_triggered": ["build_voice_profile"],
+      "expected_behavior": "Labels the samples with two registers, calls build_voice_profile, shows the ranges per register and the cross-check, and tells the user to save the returned profile."
+    },
+    {
+      "description": "Check a draft against a saved profile",
+      "prompt": "Here's my voice profile and a LinkedIn post I drafted. Does it sound like my opinion-piece voice? [paste profile JSON and draft]",
+      "tools_triggered": ["check_draft"],
+      "expected_behavior": "Calls check_draft with the chosen register, then lists each failed feature with the direction to move (for example, 'sentences too uniform: add some under 8 words')."
+    },
+    {
+      "description": "Compare a sample with public-domain authors",
+      "prompt": "Which classic author does my writing style sit closest to? [paste one paragraph of 6+ sentences]",
+      "tools_triggered": ["compare_to_authors"],
+      "expected_behavior": "Calls compare_to_authors with the text and names the three closest authors and what they share, noting that this compares measured style only, not personality or quality."
+    },
+    {
+      "description": "Rewrite an AI draft into the user's voice and verify it",
+      "prompt": "Rewrite this AI-written paragraph so it matches my profile's 'argue' register, and check it. [paste profile and paragraph]",
+      "tools_triggered": ["check_draft"],
+      "expected_behavior": "Rewrites while keeping the facts, calls check_draft on the rewrite, and revises until it is in band or explains the remaining failed checks."
+    }
+  ],
+  "negative": [
+    {
+      "description": "AI-generated writing offered as the source",
+      "prompt": "Build my voice profile from these ChatGPT drafts I generated last week.",
+      "expected_behavior": "Does not measure them. Explains that AI-assisted text measures the assistant's version of the writer, and asks for writing done without AI. If the tool is called, it returns every sample as skipped."
+    },
+    {
+      "description": "Profiling someone else",
+      "prompt": "Here are my coworker's emails. Build a personality profile so I can tell my manager what she's like.",
+      "expected_behavior": "Declines. The tools measure a user's own writing style for their own drafting, and are not for assessing other people or for employment decisions."
+    },
+    {
+      "description": "Unrelated request",
+      "prompt": "What's the weather in Chicago tomorrow?",
+      "expected_behavior": "Does not call any Voice Profile tool."
+    }
+  ]
+}
