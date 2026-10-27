@@ -1,5 +1,5 @@
 {
- "note": "Measured style features of public-domain works from Project Gutenberg. Numbers only; no text is stored. Not personality claims about any person. tone holds per-1,000-word word-category rates (see tone.py), describing how the text reads.",
+ "note": "Measured style features of public-domain works from Project Gutenberg. Numbers only; no text is stored. Not personality claims about any person. tone holds per-1,000-word word-category rates (see tone.py), describing how the text reads. tone holds per-1,000-word word-category rates (see tone.py), describing how the text reads.",
  "chunk_words": 1500,
  "authors": [
   {
@@ -2216,6 +2216,32 @@
     "second_person_per_1k": 4.99,
     "pct_questions": 3.26,
     "sents_per_para": 0.34
+   },
+   "tone": {
+    "reasoning": 2.27,
+    "hedges": 4.19,
+    "certainty": 3.39,
+    "intensifiers": 1.65,
+    "social": 10.2,
+    "positive": 4.29,
+    "negative": 1.94,
+    "order": 3.59,
+    "insight": 1.72,
+    "pct_exclaim": 3.53,
+    "pct_long_words": 16.34
+   },
+   "tone_spread": {
+    "reasoning": 1.6,
+    "hedges": 1.92,
+    "certainty": 1.68,
+    "intensifiers": 1.19,
+    "social": 3.67,
+    "positive": 1.98,
+    "negative": 1.02,
+    "order": 1.44,
+    "insight": 1.23,
+    "pct_exclaim": 2.72,
+    "pct_long_words": 2.15
    }
   },
   {
@@ -2249,6 +2275,32 @@
     "second_person_per_1k": 10.59,
     "pct_questions": 4.26,
     "sents_per_para": 1.48
+   },
+   "tone": {
+    "reasoning": 1.87,
+    "hedges": 3.21,
+    "certainty": 3.68,
+    "intensifiers": 3.38,
+    "social": 16.68,
+    "positive": 7.21,
+    "negative": 2.27,
+    "order": 2.49,
+    "insight": 0.7,
+    "pct_exclaim": 1.05,
+    "pct_long_words": 11.79
+   },
+   "tone_spread": {
+    "reasoning": 1.35,
+    "hedges": 2.21,
+    "certainty": 2.31,
+    "intensifiers": 2.24,
+    "social": 7.46,
+    "positive": 3.74,
+    "negative": 1.99,
+    "order": 2.0,
+    "insight": 0.94,
+    "pct_exclaim": 1.42,
+    "pct_long_words": 2.03
    }
   },
   {
@@ -2282,6 +2334,32 @@
     "second_person_per_1k": 12.78,
     "pct_questions": 2.89,
     "sents_per_para": 2.05
+   },
+   "tone": {
+    "reasoning": 2.12,
+    "hedges": 2.92,
+    "certainty": 3.24,
+    "intensifiers": 4.89,
+    "social": 17.29,
+    "positive": 6.59,
+    "negative": 3.45,
+    "order": 2.25,
+    "insight": 0.93,
+    "pct_exclaim": 0.45,
+    "pct_long_words": 11.64
+   },
+   "tone_spread": {
+    "reasoning": 1.56,
+    "hedges": 1.55,
+    "certainty": 1.6,
+    "intensifiers": 3.04,
+    "social": 7.91,
+    "positive": 3.51,
+    "negative": 2.34,
+    "order": 1.81,
+    "insight": 0.94,
+    "pct_exclaim": 0.77,
+    "pct_long_words": 1.35
    }
   },
   {
@@ -2315,6 +2393,32 @@
     "second_person_per_1k": 2.21,
     "pct_questions": 4.17,
     "sents_per_para": 1.81
+   },
+   "tone": {
+    "reasoning": 2.03,
+    "hedges": 4.33,
+    "certainty": 6.75,
+    "intensifiers": 3.56,
+    "social": 6.73,
+    "positive": 6.65,
+    "negative": 2.01,
+    "order": 1.77,
+    "insight": 1.22,
+    "pct_exclaim": 8.57,
+    "pct_long_words": 18.21
+   },
+   "tone_spread": {
+    "reasoning": 1.26,
+    "hedges": 1.97,
+    "certainty": 2.87,
+    "intensifiers": 1.52,
+    "social": 2.51,
+    "positive": 2.21,
+    "negative": 1.28,
+    "order": 1.34,
+    "insight": 0.99,
+    "pct_exclaim": 5.7,
+    "pct_long_words": 2.05
    }
   }
  ]
