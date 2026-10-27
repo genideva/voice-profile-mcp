@@ -2,7 +2,7 @@
 
 **Do you write like Austen, Emerson or Henry Ford?** Paste your writing and find out, measured instead of guessed.
 
-**[Try it in your browser →](https://voice-profile-mcp.vercel.app/)** No sign-up. Nothing is stored.
+**[Try it in your browser →](https://voice.citrusworks.io/)** No sign-up. Nothing is stored.
 
 This server measures nine features of your style (sentence length and rhythm, pronouns, questions, paragraph shape) and compares them with 41 public-domain books by 40 writers: novelists, essayists, memoirists, and business, finance and advice writers, from Jane Austen to Benjamin Franklin to Ernest Hemingway. The numbers are counted in code, not estimated by a language model, so the same text always gets the same answer.
 
@@ -37,13 +37,13 @@ This describes the **writing, never the writer**. Word-category links to persona
 
 ## Try it
 
-- **In a browser:** [voice-profile-mcp.vercel.app](https://voice-profile-mcp.vercel.app/)
+- **In a browser:** [voice.citrusworks.io](https://voice.citrusworks.io/)
 - **In ChatGPT:** install the [Voice Profile plugin](https://github.com/genideva/voice-profile). The server comes bundled, so there's nothing to connect by hand.
 - **In Claude Code or Codex:** the same plugin runs these measurements on your own machine and never calls this server. To use the server's author comparison there too, add it as an MCP server (below).
-- **From any MCP client:** the endpoint is `https://voice-profile-mcp.vercel.app/mcp` (streamable HTTP, no authentication).
+- **From any MCP client:** the endpoint is `https://voice.citrusworks.io/mcp` (streamable HTTP, no authentication).
 
 ```bash
-npx @modelcontextprotocol/inspector --cli https://voice-profile-mcp.vercel.app/mcp --transport http \
+npx @modelcontextprotocol/inspector --cli https://voice.citrusworks.io/mcp --transport http \
   --method tools/call --tool-name compare_to_authors \
   --tool-arg 'text=Paste at least five sentences of your own writing here. ...'
 ```
