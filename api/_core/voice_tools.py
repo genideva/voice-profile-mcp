@@ -11,6 +11,7 @@ import re
 import statistics
 
 from textstats import measure, clean, METRICS
+import tone
 from build_profile import bands_for, fails, two_means
 from verify import COUPLED
 
@@ -61,7 +62,7 @@ def _measure_samples(samples, need_register=False):
             raise ToolError("register '%s' must be lowercase letters, digits or hyphens, up to 24 characters." % reg)
         if need_register and not reg:
             reg = "default"
-        docs.append({"path": label, "register": reg, "lane": "written",
+        docs.append({"path": label, "register": reg, "lane": "written", "tone": tone.measure_tone(text),
                      "metrics": m, "counts": {k: counts[k] for k in ("words", "sentences", "paragraphs")}})
     return docs, skipped
 
@@ -82,7 +83,8 @@ def analyze_writing(samples):
         "skipped": skipped,
         "summary": summary,
         "samples": [{"title": d["path"], "register": d["register"] or None, "words": d["counts"]["words"],
-                     "metrics": _round(d["metrics"])} for d in docs],
+                     "metrics": _round(d["metrics"]),
+                     "tone": _round(d["tone"], 2) if d.get("tone") else None} for d in docs],
     }
     if words < 3000:
         out["warning"] = "Under 3,000 words. Any profile built from this will be provisional."
@@ -195,6 +197,7 @@ def compare_to_authors(text=None, profile=None, register=None, top_n=3):
         if counts["words"] > MAX_DRAFT_WORDS:
             raise ToolError("Text is over %d words. Send a shorter sample." % MAX_DRAFT_WORDS)
         mine, basis = m, "the text provided (%d words)" % counts["words"]
+        reads = tone.how_it_reads(tone.measure_tone(text), AUTHORS["authors"])
     else:
         _validate_profile(profile)
         regs = list(profile["registers"])
@@ -202,6 +205,7 @@ def compare_to_authors(text=None, profile=None, register=None, top_n=3):
         if register not in regs:
             raise ToolError("Pick a register: %s." % ", ".join(regs))
         mine, basis = profile["registers"][register]["center"], "profile register '%s'" % register
+        reads = None
     top_n = max(1, min(int(top_n or 3), 8))
     scale = _author_scale()
     ranked = []
@@ -226,15 +230,19 @@ def compare_to_authors(text=None, profile=None, register=None, top_n=3):
         best = min(AUTHORS["authors"], key=lambda a: abs(a["center"][k] - mine[k]))
         per_feature[METRICS[k]] = {"you": round(mine[k], 1), "closest_author": best["author"],
                                    "their_value": best["center"][k]}
-    return {
+    out = {
         "basis": basis,
         "nearest_authors": nearest,
         "closest_author_per_feature": per_feature,
         "method": "Distance across nine surface features (contractions excluded because older print used elisions), "
                   "each scaled by how much it varies across the %d authors. Lower is closer." % len(AUTHORS["authors"]),
-        "caveat": "Compares measurable style only: rhythm, sentence shape, pronouns, questions. It says nothing "
-                  "about personality, quality or the authors as people. Library: public-domain works from Project Gutenberg.",
+        "caveat": "The author match compares measurable style only: rhythm, sentence shape, pronouns, questions. "
+                  "how_it_reads scores how the text reads, never who wrote it, and says nothing about the authors as "
+                  "people. Library: public-domain works from Project Gutenberg.",
     }
+    if reads:
+        out["how_it_reads"] = reads
+    return out
 
 
 def list_authors():
