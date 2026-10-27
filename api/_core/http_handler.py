@@ -3,7 +3,7 @@
 Routes:
   POST /mcp                                   MCP streamable HTTP (JSON responses)
   GET  /.well-known/openai-apps-challenge     domain-verification token (env OPENAI_APPS_CHALLENGE)
-  GET  /                                      short plain-text description
+  GET  /                                      try-it page for browsers (Accept: text/html), else plain text
 
 Privacy: request bodies are never logged. log_message is silenced so even the
 local server prints nothing about requests.
@@ -18,6 +18,16 @@ import mcp_protocol
 MAX_BODY_BYTES = 1_500_000
 RATE_PER_MINUTE = 60          # per client address, per running instance; held in memory only
 _hits = {}
+_DEMO = None
+
+
+def _demo_page():
+    """The try-it page at / for browsers. Same origin as /mcp, so no CORS needed."""
+    global _DEMO
+    if _DEMO is None:
+        with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "demo.html"), "rb") as f:
+            _DEMO = f.read()
+    return _DEMO
 
 
 def _rate_ok(addr):
@@ -60,6 +70,8 @@ class Handler(BaseHTTPRequestHandler):
             return self._send(200 if token else 404, token.encode(), "text/plain")
         if p in ("/", "/api/mcp", "/mcp"):
             if p == "/":
+                if "text/html" in (self.headers.get("Accept") or ""):
+                    return self._send(200, _demo_page(), "text/html; charset=utf-8")
                 return self._send(200, b"voice-profile MCP server. POST JSON-RPC to /mcp. "
                                        b"Source: https://github.com/genideva/voice-profile-mcp\n", "text/plain")
             return self._send(405, {"error": "Use POST for MCP requests."})

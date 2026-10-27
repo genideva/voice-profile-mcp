@@ -1,10 +1,42 @@
 # voice-profile-mcp
 
-The hosted measurement service behind the [voice-profile](https://github.com/genideva/voice-profile) plugin, for ChatGPT. It's a small, stateless [MCP](https://modelcontextprotocol.io) server. The chat model leads the conversation, and this server does the counting, so the numbers are exact rather than estimated.
+**Which classic author do you write like?** Paste your writing and find out, measured instead of guessed.
 
-**Live endpoint:** `https://voice-profile-mcp.vercel.app/mcp` (streamable HTTP, no authentication).
+**[Try it in your browser →](https://voice-profile-mcp.vercel.app/)** No sign-up. Nothing is stored.
+
+This server measures nine features of your style (sentence length and rhythm, pronouns, questions, paragraph shape) and compares them with 37 public-domain authors, from Jane Austen to Emily Post to Henry Ford. The numbers are counted in code, not estimated by a language model, so the same text always gets the same answer.
+
+It's also the measurement engine behind the **[Voice Profile plugin](https://github.com/genideva/voice-profile)**, which builds a profile of how you write and checks AI drafts against it so they sound like you.
+
+## Example
+
+The Gettysburg Address, run through `compare_to_authors`:
+
+| | Author | Work | Distance |
+|---|---|---|---|
+| 1 | Walter Bagehot | *Lombard Street* (1873) | 0.70 |
+| 2 | Emily Post | *Etiquette* (1922) | 0.77 |
+| 3 | Ida M. Tarbell | *The Early Life of Abraham Lincoln* (1896) | 0.80 |
+
+Lincoln's closest matches include a biography of Lincoln. Feature by feature, his 40% share of 25+ word sentences matches Melville almost exactly (40.2%), and his sentence-length variation matches Mark Twain (19.3 vs 19.1). Lower distance is closer.
+
+![The try-it page showing the Gettysburg Address result](docs/demo.png)
+
+## Try it
+
+- **In a browser:** [voice-profile-mcp.vercel.app](https://voice-profile-mcp.vercel.app/)
+- **In ChatGPT or Claude:** install the [Voice Profile plugin](https://github.com/genideva/voice-profile). The server comes bundled, so there's nothing to connect by hand.
+- **From any MCP client:** the endpoint is `https://voice-profile-mcp.vercel.app/mcp` (streamable HTTP, no authentication).
+
+```bash
+npx @modelcontextprotocol/inspector --cli https://voice-profile-mcp.vercel.app/mcp --transport http \
+  --method tools/call --tool-name compare_to_authors \
+  --tool-arg 'text=Paste at least five sentences of your own writing here. ...'
+```
 
 **It stores nothing.** Every request is measured in memory and the result is returned. No database, no files, no request logging.
+
+If this is useful, a ⭐ helps other people find it.
 
 ## Tools
 
@@ -52,15 +84,7 @@ python3 server.py            # http://localhost:8787/mcp
 python3 -m unittest discover tests
 ```
 
-There are no dependencies: standard-library Python only.
-
-**Try it from any MCP client:**
-
-```bash
-npx @modelcontextprotocol/inspector --cli https://voice-profile-mcp.vercel.app/mcp --transport http --method tools/list
-```
-
-In ChatGPT, it comes bundled with the Voice Profile plugin, so there's nothing to connect by hand.
+There are no dependencies: standard-library Python only. Open http://localhost:8787/ in a browser for the try-it page (`api/_core/demo.html`).
 
 **Deploying (Vercel):** `api/mcp.py` is the function and `vercel.json` routes `/mcp` and `/.well-known/openai-apps-challenge` to it. To pass OpenAI's domain verification, set the environment variable `OPENAI_APPS_CHALLENGE` to the token from the plugin dashboard.
 

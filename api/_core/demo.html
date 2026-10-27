@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Which classic author do you write like?</title>
+<meta name="description" content="Paste your writing. See which of 37 public-domain authors it matches on measured style. Nothing is stored.">
+<style>
+  :root {
+    --bg: #faf8f4; --fg: #1f1d1a; --muted: #6b665e; --line: #e2ddd3;
+    --card: #ffffff; --accent: #8a3b12; --accent-fg: #ffffff; --bar: #d9cbb8; --bar-you: #8a3b12;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #171614; --fg: #ece8e1; --muted: #a29c92; --line: #2f2c28;
+      --card: #1f1d1a; --accent: #e08a55; --accent-fg: #171614; --bar: #3a352f; --bar-you: #e08a55; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg);
+    font: 17px/1.55 Georgia, "Iowan Old Style", "Times New Roman", serif; }
+  main { max-width: 720px; margin: 0 auto; padding: 40px 16px 64px; }
+  h1 { font-size: 2rem; line-height: 1.2; margin: 0 0 8px; font-weight: normal; }
+  .lede { color: var(--muted); margin: 0 0 28px; }
+  .sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  textarea { width: 100%; min-height: 220px; padding: 14px; border: 1px solid var(--line);
+    border-radius: 8px; background: var(--card); color: var(--fg); font: inherit; resize: vertical; }
+  .row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin: 12px 0 0; font-size: 14px; }
+  button { font: 600 15px/1 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    padding: 12px 18px; border-radius: 8px; border: 0; background: var(--accent); color: var(--accent-fg); cursor: pointer; }
+  button.link { background: none; color: var(--accent); padding: 0; text-decoration: underline; }
+  button:disabled { opacity: .6; cursor: default; }
+  .note { color: var(--muted); font-size: 13px; }
+  #err { color: #b3261e; margin-top: 16px; }
+  #out { margin-top: 36px; }
+  .match { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 18px 20px; margin-bottom: 12px; }
+  .match .rank { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  .match h2 { font-size: 1.35rem; font-weight: normal; margin: 4px 0 2px; }
+  .match .work { color: var(--muted); font-style: italic; margin-bottom: 10px; }
+  .match ul { margin: 0; padding-left: 18px; font-size: 14px; }
+  h3 { font-size: 1.1rem; font-weight: normal; margin: 32px 0 10px; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  td, th { text-align: left; padding: 8px 6px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { color: var(--muted); font-weight: 600; }
+  td.num { white-space: nowrap; }
+  footer { margin-top: 48px; font-size: 13px; color: var(--muted); }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+<main>
+  <h1>Which classic author do you write like?</h1>
+  <p class="lede">Paste something you wrote. It's measured on nine features of style (sentence length and rhythm, pronouns, questions, paragraph shape) and compared with 37 public-domain authors, from Austen to Emily Post. Counted, not guessed by a model.</p>
+
+  <textarea id="text" placeholder="Paste at least five sentences of your own writing: a blog post, a memo, an email. 200+ words gives a steadier result."></textarea>
+  <div class="row sans">
+    <button id="go">Compare my writing</button>
+    <button class="link" id="sample" type="button">Try the Gettysburg Address</button>
+  </div>
+  <p class="note sans">Use text you wrote without AI help, or you'll measure the AI. Nothing is stored or logged: the text is measured in memory and discarded.</p>
+  <div id="err" class="sans" role="alert"></div>
+  <div id="out" aria-live="polite"></div>
+
+  <footer class="sans">
+    Open source (MIT): <a href="https://github.com/genideva/voice-profile-mcp">voice-profile-mcp</a> on GitHub.
+    Want a full voice profile and draft checks in ChatGPT or Claude? See the <a href="https://github.com/genideva/voice-profile">Voice Profile plugin</a>.
+    This compares measurable style only. It says nothing about quality, personality, or the authors as people.
+  </footer>
+</main>
+<script>
+const GETTYSBURG = "Four score and seven years ago our fathers brought forth on this continent, a new nation, conceived in Liberty, and dedicated to the proposition that all men are created equal.\n\nNow we are engaged in a great civil war, testing whether that nation, or any nation so conceived and so dedicated, can long endure. We are met on a great battle-field of that war. We have come to dedicate a portion of that field, as a final resting place for those who here gave their lives that that nation might live. It is altogether fitting and proper that we should do this.\n\nBut, in a larger sense, we can not dedicate, we can not consecrate, we can not hallow this ground. The brave men, living and dead, who struggled here, have consecrated it, far above our poor power to add or detract. The world will little note, nor long remember what we say here, but it can never forget what they did here. It is for us the living, rather, to be dedicated here to the unfinished work which they who fought here have thus far so nobly advanced. It is rather for us to be here dedicated to the great task remaining before us, that from these honored dead we take increased devotion to that cause for which they gave the last full measure of devotion, that we here highly resolve that these dead shall not have died in vain, that this nation, under God, shall have a new birth of freedom, and that government of the people, by the people, for the people, shall not perish from the earth.";
+
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const fmt = (n) => (Math.round(n * 10) / 10).toString();
+
+$("sample").onclick = () => { $("text").value = GETTYSBURG; $("text").focus(); };
+
+$("go").onclick = async () => {
+  const text = $("text").value.trim();
+  $("err").textContent = ""; $("out").innerHTML = "";
+  if (!text) { $("err").textContent = "Paste some writing first."; return; }
+  $("go").disabled = true; $("go").textContent = "Measuring…";
+  try {
+    const res = await fetch("/mcp", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json, text/event-stream" },
+      body: JSON.stringify({ jsonrpc: "2.0", id: 1, method: "tools/call",
+        params: { name: "compare_to_authors", arguments: { text, top_n: 3 } } })
+    });
+    if (res.status === 429) throw new Error("Too many requests. Try again in a minute.");
+    const data = await res.json();
+    if (data.error) throw new Error(data.error.message || "Something went wrong.");
+    const r = data.result || {};
+    if (r.isError) throw new Error((r.content && r.content[0] && r.content[0].text) || "Something went wrong.");
+    render(r.structuredContent || JSON.parse(r.content[0].text));
+  } catch (e) {
+    $("err").textContent = e.message || "Something went wrong.";
+  } finally {
+    $("go").disabled = false; $("go").textContent = "Compare my writing";
+  }
+};
+
+function render(d) {
+  const ranks = ["Closest match", "Second", "Third"];
+  let html = d.nearest_authors.map((a, i) => `
+    <div class="match">
+      <div class="rank sans">${ranks[i] || ""}</div>
+      <h2>${esc(a.author)}</h2>
+      <div class="work">${esc(a.work)} (${a.year}) · <a href="${esc(a.source)}">read it free</a></div>
+      <ul class="sans">
+        <li>Most alike on ${a.most_alike_on.map(esc).join(", ")}</li>
+        ${a.most_different_on.map(f => `<li>Differs on ${esc(f.feature)}: you ${fmt(f.you)}, ${esc(a.author.split(" ").slice(-1)[0])} ${fmt(f.author)}</li>`).join("")}
+      </ul>
+    </div>`).join("");
+  html += `<h3>Closest author on each feature</h3>
+    <table class="sans"><tr><th>Feature</th><th>You</th><th>Closest author</th></tr>` +
+    Object.entries(d.closest_author_per_feature).map(([k, v]) =>
+      `<tr><td>${esc(k)}</td><td class="num">${fmt(v.you)}</td><td>${esc(v.closest_author)} (${fmt(v.their_value)})</td></tr>`).join("") +
+    `</table><p class="note sans">Based on ${esc(d.basis)}. ${esc(d.method)}</p>`;
+  $("out").innerHTML = html;
+  $("out").scrollIntoView({ behavior: "smooth", block: "start" });
+}
+</script>
+</body>
+</html>
