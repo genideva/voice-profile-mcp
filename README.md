@@ -1,10 +1,10 @@
 # voice-profile-mcp
 
-**Which classic author do you write like?** Paste your writing and find out, measured instead of guessed.
+**Do you write like Austen, Emerson or Henry Ford?** Paste your writing and find out, measured instead of guessed.
 
 **[Try it in your browser →](https://voice-profile-mcp.vercel.app/)** No sign-up. Nothing is stored.
 
-This server measures nine features of your style (sentence length and rhythm, pronouns, questions, paragraph shape) and compares them with 37 public-domain authors, from Jane Austen to Emily Post to Henry Ford. The numbers are counted in code, not estimated by a language model, so the same text always gets the same answer.
+This server measures nine features of your style (sentence length and rhythm, pronouns, questions, paragraph shape) and compares them with 37 public-domain writers: novelists, essayists, memoirists, and business, finance and advice writers, from Jane Austen to Benjamin Franklin to Emily Post. The numbers are counted in code, not estimated by a language model, so the same text always gets the same answer.
 
 It's also the measurement engine behind the **[Voice Profile plugin](https://github.com/genideva/voice-profile)**, which builds a profile of how you write and checks AI drafts against it so they sound like you.
 
