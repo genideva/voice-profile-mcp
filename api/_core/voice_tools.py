@@ -198,6 +198,9 @@ def compare_to_authors(text=None, profile=None, register=None, top_n=3):
             raise ToolError("Text is over %d words. Send a shorter sample." % MAX_DRAFT_WORDS)
         mine, basis = m, "the text provided (%d words)" % counts["words"]
         reads = tone.how_it_reads(tone.measure_tone(text), AUTHORS["authors"])
+        if reads and counts["words"] < 400:
+            reads["warning"] = ("Only %d words. Word-category counts are noisy on short texts; one word can move "
+                                "a marker. Treat this as rough, and try 400+ words." % counts["words"])
     else:
         _validate_profile(profile)
         regs = list(profile["registers"])

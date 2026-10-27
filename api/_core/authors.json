@@ -1,5 +1,5 @@
 {
- "note": "Measured style features of public-domain works from Project Gutenberg. Numbers only; no text is stored. Not personality claims about any person.",
+ "note": "Measured style features of public-domain works from Project Gutenberg. Numbers only; no text is stored. Not personality claims about any person. tone holds per-1,000-word word-category rates (see tone.py), describing how the text reads.",
  "chunk_words": 1500,
  "authors": [
   {
@@ -33,6 +33,32 @@
     "second_person_per_1k": 7.14,
     "pct_questions": 3.36,
     "sents_per_para": 1.43
+   },
+   "tone": {
+    "reasoning": 2.47,
+    "hedges": 3.88,
+    "certainty": 3.94,
+    "intensifiers": 1.41,
+    "social": 8.01,
+    "positive": 4.89,
+    "negative": 1.27,
+    "order": 3.15,
+    "insight": 1.27,
+    "pct_exclaim": 7.42,
+    "pct_long_words": 17.8
+   },
+   "tone_spread": {
+    "reasoning": 1.56,
+    "hedges": 1.92,
+    "certainty": 1.93,
+    "intensifiers": 1.03,
+    "social": 4.47,
+    "positive": 2.08,
+    "negative": 0.95,
+    "order": 1.65,
+    "insight": 1.34,
+    "pct_exclaim": 9.96,
+    "pct_long_words": 3.11
    }
   },
   {
@@ -66,6 +92,32 @@
     "second_person_per_1k": 9.31,
     "pct_questions": 3.71,
     "sents_per_para": 1.12
+   },
+   "tone": {
+    "reasoning": 5.03,
+    "hedges": 5.85,
+    "certainty": 6.89,
+    "intensifiers": 6.31,
+    "social": 8.18,
+    "positive": 8.6,
+    "negative": 2.02,
+    "order": 2.79,
+    "insight": 2.48,
+    "pct_exclaim": 4.97,
+    "pct_long_words": 20.39
+   },
+   "tone_spread": {
+    "reasoning": 2.1,
+    "hedges": 2.75,
+    "certainty": 2.76,
+    "intensifiers": 2.71,
+    "social": 4.67,
+    "positive": 3.17,
+    "negative": 1.32,
+    "order": 1.48,
+    "insight": 1.16,
+    "pct_exclaim": 5.38,
+    "pct_long_words": 1.53
    }
   },
   {
@@ -99,6 +151,32 @@
     "second_person_per_1k": 11.24,
     "pct_questions": 6.2,
     "sents_per_para": 0.63
+   },
+   "tone": {
+    "reasoning": 2.6,
+    "hedges": 3.58,
+    "certainty": 3.62,
+    "intensifiers": 2.57,
+    "social": 4.57,
+    "positive": 5.77,
+    "negative": 2.07,
+    "order": 2.33,
+    "insight": 1.51,
+    "pct_exclaim": 10.33,
+    "pct_long_words": 17.47
+   },
+   "tone_spread": {
+    "reasoning": 1.49,
+    "hedges": 2.04,
+    "certainty": 1.96,
+    "intensifiers": 1.42,
+    "social": 2.93,
+    "positive": 2.78,
+    "negative": 1.62,
+    "order": 1.46,
+    "insight": 1.19,
+    "pct_exclaim": 6.81,
+    "pct_long_words": 2.14
    }
   },
   {
@@ -132,6 +210,32 @@
     "second_person_per_1k": 6.28,
     "pct_questions": 4.38,
     "sents_per_para": 2.22
+   },
+   "tone": {
+    "reasoning": 3.45,
+    "hedges": 3.38,
+    "certainty": 4.9,
+    "intensifiers": 1.29,
+    "social": 20.24,
+    "positive": 8.15,
+    "negative": 1.97,
+    "order": 1.86,
+    "insight": 1.57,
+    "pct_exclaim": 1.97,
+    "pct_long_words": 17.98
+   },
+   "tone_spread": {
+    "reasoning": 1.58,
+    "hedges": 1.33,
+    "certainty": 1.77,
+    "intensifiers": 0.92,
+    "social": 9.15,
+    "positive": 3.04,
+    "negative": 1.5,
+    "order": 1.63,
+    "insight": 1.1,
+    "pct_exclaim": 1.96,
+    "pct_long_words": 1.42
    }
   },
   {
@@ -165,6 +269,32 @@
     "second_person_per_1k": 2.39,
     "pct_questions": 4.37,
     "sents_per_para": 2.87
+   },
+   "tone": {
+    "reasoning": 4.59,
+    "hedges": 4.88,
+    "certainty": 3.93,
+    "intensifiers": 1.76,
+    "social": 9.72,
+    "positive": 5.09,
+    "negative": 1.57,
+    "order": 2.23,
+    "insight": 1.73,
+    "pct_exclaim": 3.82,
+    "pct_long_words": 16.59
+   },
+   "tone_spread": {
+    "reasoning": 1.91,
+    "hedges": 1.78,
+    "certainty": 1.91,
+    "intensifiers": 1.07,
+    "social": 8.18,
+    "positive": 2.93,
+    "negative": 1.25,
+    "order": 1.42,
+    "insight": 1.32,
+    "pct_exclaim": 4.0,
+    "pct_long_words": 1.52
    }
   },
   {
@@ -198,6 +328,32 @@
     "second_person_per_1k": 15.15,
     "pct_questions": 3.95,
     "sents_per_para": 1.93
+   },
+   "tone": {
+    "reasoning": 1.53,
+    "hedges": 5.15,
+    "certainty": 7.75,
+    "intensifiers": 2.92,
+    "social": 8.16,
+    "positive": 8.4,
+    "negative": 4.2,
+    "order": 1.74,
+    "insight": 2.53,
+    "pct_exclaim": 5.67,
+    "pct_long_words": 15.18
+   },
+   "tone_spread": {
+    "reasoning": 1.09,
+    "hedges": 2.26,
+    "certainty": 3.4,
+    "intensifiers": 1.96,
+    "social": 4.64,
+    "positive": 3.75,
+    "negative": 1.83,
+    "order": 1.18,
+    "insight": 1.21,
+    "pct_exclaim": 2.54,
+    "pct_long_words": 2.29
    }
   },
   {
@@ -231,6 +387,32 @@
     "second_person_per_1k": 4.13,
     "pct_questions": 2.84,
     "sents_per_para": 7.11
+   },
+   "tone": {
+    "reasoning": 3.87,
+    "hedges": 3.44,
+    "certainty": 4.27,
+    "intensifiers": 3.25,
+    "social": 12.11,
+    "positive": 5.39,
+    "negative": 1.71,
+    "order": 3.15,
+    "insight": 1.63,
+    "pct_exclaim": 4.86,
+    "pct_long_words": 17.01
+   },
+   "tone_spread": {
+    "reasoning": 2.12,
+    "hedges": 1.1,
+    "certainty": 1.47,
+    "intensifiers": 1.48,
+    "social": 12.42,
+    "positive": 2.13,
+    "negative": 1.03,
+    "order": 1.82,
+    "insight": 1.28,
+    "pct_exclaim": 5.99,
+    "pct_long_words": 2.76
    }
   },
   {
@@ -264,6 +446,32 @@
     "second_person_per_1k": 3.02,
     "pct_questions": 6.79,
     "sents_per_para": 0.95
+   },
+   "tone": {
+    "reasoning": 6.92,
+    "hedges": 4.04,
+    "certainty": 6.5,
+    "intensifiers": 2.83,
+    "social": 5.9,
+    "positive": 7.51,
+    "negative": 1.6,
+    "order": 2.19,
+    "insight": 1.85,
+    "pct_exclaim": 6.46,
+    "pct_long_words": 22.98
+   },
+   "tone_spread": {
+    "reasoning": 2.09,
+    "hedges": 1.96,
+    "certainty": 1.75,
+    "intensifiers": 1.92,
+    "social": 4.37,
+    "positive": 3.22,
+    "negative": 1.14,
+    "order": 1.26,
+    "insight": 1.48,
+    "pct_exclaim": 5.39,
+    "pct_long_words": 1.49
    }
   },
   {
@@ -297,6 +505,32 @@
     "second_person_per_1k": 5.87,
     "pct_questions": 4.29,
     "sents_per_para": 0.79
+   },
+   "tone": {
+    "reasoning": 4.52,
+    "hedges": 3.31,
+    "certainty": 3.26,
+    "intensifiers": 1.5,
+    "social": 23.53,
+    "positive": 3.51,
+    "negative": 1.05,
+    "order": 4.11,
+    "insight": 1.15,
+    "pct_exclaim": 1.56,
+    "pct_long_words": 21.74
+   },
+   "tone_spread": {
+    "reasoning": 1.11,
+    "hedges": 1.85,
+    "certainty": 1.66,
+    "intensifiers": 0.99,
+    "social": 8.25,
+    "positive": 1.7,
+    "negative": 0.91,
+    "order": 2.38,
+    "insight": 0.6,
+    "pct_exclaim": 1.51,
+    "pct_long_words": 1.9
    }
   },
   {
@@ -330,6 +564,32 @@
     "second_person_per_1k": 6.46,
     "pct_questions": 1.77,
     "sents_per_para": 1.58
+   },
+   "tone": {
+    "reasoning": 4.65,
+    "hedges": 5.14,
+    "certainty": 3.14,
+    "intensifiers": 2.69,
+    "social": 14.86,
+    "positive": 7.11,
+    "negative": 1.19,
+    "order": 3.15,
+    "insight": 1.19,
+    "pct_exclaim": 1.06,
+    "pct_long_words": 20.59
+   },
+   "tone_spread": {
+    "reasoning": 1.7,
+    "hedges": 2.28,
+    "certainty": 1.67,
+    "intensifiers": 1.59,
+    "social": 8.01,
+    "positive": 2.65,
+    "negative": 0.87,
+    "order": 1.69,
+    "insight": 1.12,
+    "pct_exclaim": 1.93,
+    "pct_long_words": 2.85
    }
   },
   {
@@ -363,6 +623,32 @@
     "second_person_per_1k": 5.76,
     "pct_questions": 7.72,
     "sents_per_para": 1.47
+   },
+   "tone": {
+    "reasoning": 4.86,
+    "hedges": 4.89,
+    "certainty": 3.7,
+    "intensifiers": 2.58,
+    "social": 5.54,
+    "positive": 4.17,
+    "negative": 1.25,
+    "order": 2.41,
+    "insight": 1.27,
+    "pct_exclaim": 13.96,
+    "pct_long_words": 18.63
+   },
+   "tone_spread": {
+    "reasoning": 2.22,
+    "hedges": 1.98,
+    "certainty": 2.31,
+    "intensifiers": 1.15,
+    "social": 4.41,
+    "positive": 2.31,
+    "negative": 1.1,
+    "order": 1.48,
+    "insight": 0.96,
+    "pct_exclaim": 9.76,
+    "pct_long_words": 2.75
    }
   },
   {
@@ -396,6 +682,32 @@
     "second_person_per_1k": 9.38,
     "pct_questions": 4.13,
     "sents_per_para": 1.38
+   },
+   "tone": {
+    "reasoning": 3.23,
+    "hedges": 3.84,
+    "certainty": 3.05,
+    "intensifiers": 1.98,
+    "social": 7.35,
+    "positive": 6.93,
+    "negative": 2.29,
+    "order": 3.1,
+    "insight": 2.3,
+    "pct_exclaim": 6.49,
+    "pct_long_words": 20.38
+   },
+   "tone_spread": {
+    "reasoning": 1.48,
+    "hedges": 1.94,
+    "certainty": 1.76,
+    "intensifiers": 1.67,
+    "social": 5.67,
+    "positive": 2.86,
+    "negative": 1.28,
+    "order": 1.87,
+    "insight": 1.83,
+    "pct_exclaim": 4.9,
+    "pct_long_words": 1.89
    }
   },
   {
@@ -429,6 +741,32 @@
     "second_person_per_1k": 6.97,
     "pct_questions": 3.15,
     "sents_per_para": 0.67
+   },
+   "tone": {
+    "reasoning": 2.78,
+    "hedges": 4.89,
+    "certainty": 5.58,
+    "intensifiers": 4.45,
+    "social": 12.21,
+    "positive": 3.76,
+    "negative": 2.0,
+    "order": 2.82,
+    "insight": 1.95,
+    "pct_exclaim": 4.27,
+    "pct_long_words": 14.89
+   },
+   "tone_spread": {
+    "reasoning": 1.79,
+    "hedges": 1.83,
+    "certainty": 2.16,
+    "intensifiers": 2.22,
+    "social": 6.19,
+    "positive": 1.94,
+    "negative": 1.28,
+    "order": 1.66,
+    "insight": 1.07,
+    "pct_exclaim": 2.89,
+    "pct_long_words": 1.68
    }
   },
   {
@@ -462,6 +800,32 @@
     "second_person_per_1k": 5.93,
     "pct_questions": 3.05,
     "sents_per_para": 2.74
+   },
+   "tone": {
+    "reasoning": 5.39,
+    "hedges": 5.75,
+    "certainty": 7.43,
+    "intensifiers": 3.72,
+    "social": 12.55,
+    "positive": 6.29,
+    "negative": 2.95,
+    "order": 2.64,
+    "insight": 3.46,
+    "pct_exclaim": 0.36,
+    "pct_long_words": 19.07
+   },
+   "tone_spread": {
+    "reasoning": 2.76,
+    "hedges": 3.19,
+    "certainty": 2.31,
+    "intensifiers": 2.43,
+    "social": 7.07,
+    "positive": 3.01,
+    "negative": 1.44,
+    "order": 1.63,
+    "insight": 1.89,
+    "pct_exclaim": 1.94,
+    "pct_long_words": 1.59
    }
   },
   {
@@ -495,6 +859,32 @@
     "second_person_per_1k": 3.32,
     "pct_questions": 3.92,
     "sents_per_para": 2.03
+   },
+   "tone": {
+    "reasoning": 4.73,
+    "hedges": 4.06,
+    "certainty": 4.03,
+    "intensifiers": 3.15,
+    "social": 8.67,
+    "positive": 3.74,
+    "negative": 1.97,
+    "order": 3.45,
+    "insight": 2.08,
+    "pct_exclaim": 5.9,
+    "pct_long_words": 20.58
+   },
+   "tone_spread": {
+    "reasoning": 2.35,
+    "hedges": 1.81,
+    "certainty": 1.95,
+    "intensifiers": 1.5,
+    "social": 8.4,
+    "positive": 2.03,
+    "negative": 1.07,
+    "order": 1.92,
+    "insight": 1.32,
+    "pct_exclaim": 6.68,
+    "pct_long_words": 2.87
    }
   },
   {
@@ -528,6 +918,32 @@
     "second_person_per_1k": 5.33,
     "pct_questions": 8.55,
     "sents_per_para": 2.03
+   },
+   "tone": {
+    "reasoning": 4.84,
+    "hedges": 3.8,
+    "certainty": 3.52,
+    "intensifiers": 3.31,
+    "social": 9.01,
+    "positive": 6.57,
+    "negative": 1.3,
+    "order": 2.68,
+    "insight": 1.98,
+    "pct_exclaim": 0.58,
+    "pct_long_words": 19.15
+   },
+   "tone_spread": {
+    "reasoning": 1.45,
+    "hedges": 1.7,
+    "certainty": 1.65,
+    "intensifiers": 1.37,
+    "social": 6.32,
+    "positive": 2.26,
+    "negative": 1.18,
+    "order": 1.64,
+    "insight": 1.4,
+    "pct_exclaim": 1.83,
+    "pct_long_words": 2.77
    }
   },
   {
@@ -561,6 +977,32 @@
     "second_person_per_1k": 12.54,
     "pct_questions": 2.25,
     "sents_per_para": 1.4
+   },
+   "tone": {
+    "reasoning": 4.22,
+    "hedges": 4.03,
+    "certainty": 5.32,
+    "intensifiers": 2.2,
+    "social": 10.45,
+    "positive": 4.03,
+    "negative": 3.94,
+    "order": 4.12,
+    "insight": 1.83,
+    "pct_exclaim": 5.92,
+    "pct_long_words": 18.66
+   },
+   "tone_spread": {
+    "reasoning": 1.39,
+    "hedges": 2.04,
+    "certainty": 1.61,
+    "intensifiers": 0.96,
+    "social": 7.3,
+    "positive": 1.63,
+    "negative": 2.0,
+    "order": 3.29,
+    "insight": 0.23,
+    "pct_exclaim": 3.28,
+    "pct_long_words": 1.41
    }
   },
   {
@@ -594,6 +1036,32 @@
     "second_person_per_1k": 2.38,
     "pct_questions": 2.46,
     "sents_per_para": 2.29
+   },
+   "tone": {
+    "reasoning": 5.1,
+    "hedges": 2.77,
+    "certainty": 3.36,
+    "intensifiers": 2.01,
+    "social": 5.78,
+    "positive": 7.47,
+    "negative": 1.38,
+    "order": 3.7,
+    "insight": 1.42,
+    "pct_exclaim": 1.92,
+    "pct_long_words": 23.34
+   },
+   "tone_spread": {
+    "reasoning": 1.88,
+    "hedges": 1.57,
+    "certainty": 2.14,
+    "intensifiers": 1.17,
+    "social": 5.12,
+    "positive": 3.42,
+    "negative": 0.96,
+    "order": 1.88,
+    "insight": 1.27,
+    "pct_exclaim": 2.1,
+    "pct_long_words": 1.71
    }
   },
   {
@@ -627,6 +1095,32 @@
     "second_person_per_1k": 9.32,
     "pct_questions": 3.73,
     "sents_per_para": 0.77
+   },
+   "tone": {
+    "reasoning": 5.8,
+    "hedges": 3.79,
+    "certainty": 7.58,
+    "intensifiers": 4.59,
+    "social": 8.2,
+    "positive": 6.48,
+    "negative": 1.14,
+    "order": 4.21,
+    "insight": 1.6,
+    "pct_exclaim": 6.71,
+    "pct_long_words": 18.88
+   },
+   "tone_spread": {
+    "reasoning": 2.14,
+    "hedges": 2.1,
+    "certainty": 2.75,
+    "intensifiers": 2.03,
+    "social": 4.15,
+    "positive": 3.71,
+    "negative": 1.18,
+    "order": 2.52,
+    "insight": 1.55,
+    "pct_exclaim": 5.18,
+    "pct_long_words": 2.35
    }
   },
   {
@@ -660,6 +1154,32 @@
     "second_person_per_1k": 4.86,
     "pct_questions": 3.61,
     "sents_per_para": 1.23
+   },
+   "tone": {
+    "reasoning": 4.53,
+    "hedges": 5.9,
+    "certainty": 6.2,
+    "intensifiers": 2.41,
+    "social": 19.44,
+    "positive": 5.1,
+    "negative": 2.35,
+    "order": 3.84,
+    "insight": 4.78,
+    "pct_exclaim": 2.18,
+    "pct_long_words": 21.96
+   },
+   "tone_spread": {
+    "reasoning": 2.0,
+    "hedges": 2.19,
+    "certainty": 2.29,
+    "intensifiers": 1.32,
+    "social": 8.76,
+    "positive": 2.82,
+    "negative": 2.15,
+    "order": 2.55,
+    "insight": 3.32,
+    "pct_exclaim": 2.93,
+    "pct_long_words": 2.21
    }
   },
   {
@@ -693,6 +1213,32 @@
     "second_person_per_1k": 6.22,
     "pct_questions": 3.23,
     "sents_per_para": 0.87
+   },
+   "tone": {
+    "reasoning": 6.63,
+    "hedges": 2.24,
+    "certainty": 3.13,
+    "intensifiers": 2.12,
+    "social": 5.91,
+    "positive": 6.97,
+    "negative": 1.81,
+    "order": 7.75,
+    "insight": 2.35,
+    "pct_exclaim": 0.42,
+    "pct_long_words": 21.24
+   },
+   "tone_spread": {
+    "reasoning": 2.14,
+    "hedges": 1.01,
+    "certainty": 1.64,
+    "intensifiers": 1.07,
+    "social": 4.5,
+    "positive": 2.78,
+    "negative": 1.71,
+    "order": 3.29,
+    "insight": 1.43,
+    "pct_exclaim": 0.95,
+    "pct_long_words": 3.07
    }
   },
   {
@@ -726,6 +1272,32 @@
     "second_person_per_1k": 2.89,
     "pct_questions": 4.23,
     "sents_per_para": 2.49
+   },
+   "tone": {
+    "reasoning": 5.21,
+    "hedges": 4.09,
+    "certainty": 4.8,
+    "intensifiers": 2.39,
+    "social": 20.6,
+    "positive": 6.25,
+    "negative": 2.01,
+    "order": 4.9,
+    "insight": 4.06,
+    "pct_exclaim": 0.62,
+    "pct_long_words": 19.17
+   },
+   "tone_spread": {
+    "reasoning": 2.19,
+    "hedges": 2.04,
+    "certainty": 1.87,
+    "intensifiers": 1.45,
+    "social": 11.32,
+    "positive": 2.35,
+    "negative": 2.12,
+    "order": 2.75,
+    "insight": 2.17,
+    "pct_exclaim": 1.18,
+    "pct_long_words": 1.67
    }
   },
   {
@@ -759,6 +1331,32 @@
     "second_person_per_1k": 3.7,
     "pct_questions": 1.59,
     "sents_per_para": 0.93
+   },
+   "tone": {
+    "reasoning": 2.97,
+    "hedges": 2.98,
+    "certainty": 4.5,
+    "intensifiers": 2.57,
+    "social": 18.29,
+    "positive": 6.75,
+    "negative": 1.91,
+    "order": 5.23,
+    "insight": 1.8,
+    "pct_exclaim": 1.61,
+    "pct_long_words": 19.99
+   },
+   "tone_spread": {
+    "reasoning": 1.44,
+    "hedges": 1.61,
+    "certainty": 2.03,
+    "intensifiers": 1.25,
+    "social": 10.14,
+    "positive": 2.35,
+    "negative": 1.38,
+    "order": 1.77,
+    "insight": 1.18,
+    "pct_exclaim": 1.79,
+    "pct_long_words": 2.05
    }
   },
   {
@@ -792,6 +1390,32 @@
     "second_person_per_1k": 4.13,
     "pct_questions": 1.11,
     "sents_per_para": 1.61
+   },
+   "tone": {
+    "reasoning": 2.62,
+    "hedges": 5.15,
+    "certainty": 3.54,
+    "intensifiers": 1.9,
+    "social": 15.25,
+    "positive": 6.18,
+    "negative": 1.85,
+    "order": 4.98,
+    "insight": 2.5,
+    "pct_exclaim": 0.78,
+    "pct_long_words": 17.97
+   },
+   "tone_spread": {
+    "reasoning": 1.41,
+    "hedges": 2.22,
+    "certainty": 1.88,
+    "intensifiers": 1.24,
+    "social": 9.78,
+    "positive": 2.44,
+    "negative": 1.22,
+    "order": 2.29,
+    "insight": 2.02,
+    "pct_exclaim": 1.2,
+    "pct_long_words": 1.98
    }
   },
   {
@@ -825,6 +1449,32 @@
     "second_person_per_1k": 7.62,
     "pct_questions": 4.41,
     "sents_per_para": 2.56
+   },
+   "tone": {
+    "reasoning": 3.23,
+    "hedges": 4.5,
+    "certainty": 4.71,
+    "intensifiers": 5.08,
+    "social": 13.41,
+    "positive": 13.65,
+    "negative": 2.35,
+    "order": 3.63,
+    "insight": 4.75,
+    "pct_exclaim": 3.33,
+    "pct_long_words": 16.44
+   },
+   "tone_spread": {
+    "reasoning": 1.66,
+    "hedges": 1.81,
+    "certainty": 2.32,
+    "intensifiers": 3.93,
+    "social": 9.57,
+    "positive": 7.92,
+    "negative": 1.81,
+    "order": 2.97,
+    "insight": 2.77,
+    "pct_exclaim": 4.12,
+    "pct_long_words": 3.08
    }
   },
   {
@@ -858,6 +1508,32 @@
     "second_person_per_1k": 2.15,
     "pct_questions": 3.44,
     "sents_per_para": 1.43
+   },
+   "tone": {
+    "reasoning": 5.46,
+    "hedges": 4.71,
+    "certainty": 4.29,
+    "intensifiers": 2.02,
+    "social": 15.56,
+    "positive": 4.2,
+    "negative": 1.78,
+    "order": 5.13,
+    "insight": 2.26,
+    "pct_exclaim": 0.59,
+    "pct_long_words": 23.37
+   },
+   "tone_spread": {
+    "reasoning": 2.34,
+    "hedges": 1.55,
+    "certainty": 1.69,
+    "intensifiers": 1.08,
+    "social": 7.8,
+    "positive": 2.12,
+    "negative": 1.35,
+    "order": 2.63,
+    "insight": 1.26,
+    "pct_exclaim": 1.32,
+    "pct_long_words": 2.13
    }
   },
   {
@@ -891,6 +1567,32 @@
     "second_person_per_1k": 2.61,
     "pct_questions": 5.02,
     "sents_per_para": 2.13
+   },
+   "tone": {
+    "reasoning": 3.05,
+    "hedges": 2.93,
+    "certainty": 4.03,
+    "intensifiers": 1.5,
+    "social": 7.74,
+    "positive": 4.78,
+    "negative": 2.85,
+    "order": 3.56,
+    "insight": 1.73,
+    "pct_exclaim": 2.74,
+    "pct_long_words": 20.43
+   },
+   "tone_spread": {
+    "reasoning": 1.65,
+    "hedges": 1.78,
+    "certainty": 1.81,
+    "intensifiers": 1.0,
+    "social": 4.71,
+    "positive": 2.29,
+    "negative": 1.89,
+    "order": 2.17,
+    "insight": 1.04,
+    "pct_exclaim": 3.04,
+    "pct_long_words": 3.8
    }
   },
   {
@@ -924,6 +1626,32 @@
     "second_person_per_1k": 1.21,
     "pct_questions": 5.2,
     "sents_per_para": 1.09
+   },
+   "tone": {
+    "reasoning": 5.78,
+    "hedges": 4.67,
+    "certainty": 2.33,
+    "intensifiers": 2.83,
+    "social": 3.24,
+    "positive": 3.98,
+    "negative": 0.42,
+    "order": 3.94,
+    "insight": 1.23,
+    "pct_exclaim": 0.06,
+    "pct_long_words": 22.49
+   },
+   "tone_spread": {
+    "reasoning": 2.17,
+    "hedges": 3.09,
+    "certainty": 1.79,
+    "intensifiers": 1.45,
+    "social": 3.09,
+    "positive": 2.1,
+    "negative": 0.65,
+    "order": 3.91,
+    "insight": 0.93,
+    "pct_exclaim": 0.39,
+    "pct_long_words": 2.42
    }
   },
   {
@@ -957,6 +1685,32 @@
     "second_person_per_1k": 1.03,
     "pct_questions": 3.26,
     "sents_per_para": 3.48
+   },
+   "tone": {
+    "reasoning": 4.03,
+    "hedges": 3.1,
+    "certainty": 2.62,
+    "intensifiers": 2.66,
+    "social": 5.39,
+    "positive": 3.94,
+    "negative": 1.49,
+    "order": 5.0,
+    "insight": 2.24,
+    "pct_exclaim": 0.98,
+    "pct_long_words": 23.56
+   },
+   "tone_spread": {
+    "reasoning": 1.76,
+    "hedges": 1.93,
+    "certainty": 1.64,
+    "intensifiers": 1.4,
+    "social": 4.98,
+    "positive": 1.95,
+    "negative": 1.48,
+    "order": 2.03,
+    "insight": 1.23,
+    "pct_exclaim": 1.6,
+    "pct_long_words": 3.17
    }
   },
   {
@@ -990,6 +1744,32 @@
     "second_person_per_1k": 6.54,
     "pct_questions": 2.94,
     "sents_per_para": 1.26
+   },
+   "tone": {
+    "reasoning": 4.39,
+    "hedges": 3.41,
+    "certainty": 6.73,
+    "intensifiers": 3.05,
+    "social": 5.18,
+    "positive": 4.9,
+    "negative": 3.64,
+    "order": 3.77,
+    "insight": 2.03,
+    "pct_exclaim": 3.75,
+    "pct_long_words": 14.89
+   },
+   "tone_spread": {
+    "reasoning": 2.02,
+    "hedges": 1.45,
+    "certainty": 2.54,
+    "intensifiers": 1.42,
+    "social": 3.15,
+    "positive": 2.01,
+    "negative": 2.09,
+    "order": 1.48,
+    "insight": 1.3,
+    "pct_exclaim": 2.97,
+    "pct_long_words": 1.91
    }
   },
   {
@@ -1023,6 +1803,32 @@
     "second_person_per_1k": 1.91,
     "pct_questions": 2.36,
     "sents_per_para": 1.85
+   },
+   "tone": {
+    "reasoning": 4.84,
+    "hedges": 4.26,
+    "certainty": 6.54,
+    "intensifiers": 3.71,
+    "social": 7.9,
+    "positive": 7.17,
+    "negative": 2.33,
+    "order": 2.31,
+    "insight": 1.85,
+    "pct_exclaim": 0.04,
+    "pct_long_words": 20.37
+   },
+   "tone_spread": {
+    "reasoning": 2.08,
+    "hedges": 3.33,
+    "certainty": 2.24,
+    "intensifiers": 1.95,
+    "social": 5.7,
+    "positive": 2.94,
+    "negative": 1.76,
+    "order": 1.57,
+    "insight": 1.16,
+    "pct_exclaim": 0.26,
+    "pct_long_words": 1.87
    }
   },
   {
@@ -1056,6 +1862,32 @@
     "second_person_per_1k": 3.78,
     "pct_questions": 1.33,
     "sents_per_para": 2.65
+   },
+   "tone": {
+    "reasoning": 2.64,
+    "hedges": 2.44,
+    "certainty": 1.65,
+    "intensifiers": 1.92,
+    "social": 3.96,
+    "positive": 4.99,
+    "negative": 1.49,
+    "order": 2.81,
+    "insight": 1.53,
+    "pct_exclaim": 2.77,
+    "pct_long_words": 22.43
+   },
+   "tone_spread": {
+    "reasoning": 1.32,
+    "hedges": 1.41,
+    "certainty": 1.39,
+    "intensifiers": 1.24,
+    "social": 2.46,
+    "positive": 2.13,
+    "negative": 0.94,
+    "order": 1.86,
+    "insight": 1.19,
+    "pct_exclaim": 3.6,
+    "pct_long_words": 1.9
    }
   },
   {
@@ -1089,6 +1921,32 @@
     "second_person_per_1k": 6.23,
     "pct_questions": 4.77,
     "sents_per_para": 0.89
+   },
+   "tone": {
+    "reasoning": 4.72,
+    "hedges": 4.08,
+    "certainty": 8.58,
+    "intensifiers": 4.33,
+    "social": 5.73,
+    "positive": 5.87,
+    "negative": 2.04,
+    "order": 2.14,
+    "insight": 2.11,
+    "pct_exclaim": 1.46,
+    "pct_long_words": 18.47
+   },
+   "tone_spread": {
+    "reasoning": 2.26,
+    "hedges": 1.53,
+    "certainty": 3.54,
+    "intensifiers": 1.76,
+    "social": 2.91,
+    "positive": 3.42,
+    "negative": 1.35,
+    "order": 1.52,
+    "insight": 1.28,
+    "pct_exclaim": 2.55,
+    "pct_long_words": 1.57
    }
   },
   {
@@ -1122,6 +1980,32 @@
     "second_person_per_1k": 1.97,
     "pct_questions": 3.07,
     "sents_per_para": 1.73
+   },
+   "tone": {
+    "reasoning": 3.0,
+    "hedges": 4.21,
+    "certainty": 3.26,
+    "intensifiers": 2.74,
+    "social": 8.57,
+    "positive": 4.28,
+    "negative": 1.3,
+    "order": 3.32,
+    "insight": 1.73,
+    "pct_exclaim": 1.64,
+    "pct_long_words": 24.48
+   },
+   "tone_spread": {
+    "reasoning": 1.74,
+    "hedges": 1.91,
+    "certainty": 2.19,
+    "intensifiers": 1.33,
+    "social": 8.19,
+    "positive": 1.86,
+    "negative": 1.09,
+    "order": 1.95,
+    "insight": 1.25,
+    "pct_exclaim": 2.27,
+    "pct_long_words": 1.95
    }
   },
   {
@@ -1155,6 +2039,32 @@
     "second_person_per_1k": 3.21,
     "pct_questions": 3.9,
     "sents_per_para": 2.21
+   },
+   "tone": {
+    "reasoning": 3.11,
+    "hedges": 5.02,
+    "certainty": 4.59,
+    "intensifiers": 2.8,
+    "social": 4.58,
+    "positive": 4.65,
+    "negative": 1.92,
+    "order": 2.94,
+    "insight": 1.7,
+    "pct_exclaim": 2.79,
+    "pct_long_words": 22.73
+   },
+   "tone_spread": {
+    "reasoning": 1.82,
+    "hedges": 2.22,
+    "certainty": 1.97,
+    "intensifiers": 1.33,
+    "social": 3.38,
+    "positive": 1.71,
+    "negative": 1.44,
+    "order": 1.38,
+    "insight": 1.36,
+    "pct_exclaim": 2.65,
+    "pct_long_words": 1.71
    }
   },
   {
@@ -1188,6 +2098,32 @@
     "second_person_per_1k": 4.83,
     "pct_questions": 2.72,
     "sents_per_para": 3.32
+   },
+   "tone": {
+    "reasoning": 4.02,
+    "hedges": 5.36,
+    "certainty": 4.53,
+    "intensifiers": 5.14,
+    "social": 14.08,
+    "positive": 8.27,
+    "negative": 2.09,
+    "order": 2.21,
+    "insight": 1.59,
+    "pct_exclaim": 1.51,
+    "pct_long_words": 19.77
+   },
+   "tone_spread": {
+    "reasoning": 2.08,
+    "hedges": 1.74,
+    "certainty": 1.84,
+    "intensifiers": 2.31,
+    "social": 5.23,
+    "positive": 2.6,
+    "negative": 1.45,
+    "order": 1.48,
+    "insight": 1.1,
+    "pct_exclaim": 1.86,
+    "pct_long_words": 1.77
    }
   },
   {
@@ -1221,6 +2157,32 @@
     "second_person_per_1k": 1.7,
     "pct_questions": 1.46,
     "sents_per_para": 1.69
+   },
+   "tone": {
+    "reasoning": 2.25,
+    "hedges": 2.71,
+    "certainty": 3.23,
+    "intensifiers": 1.37,
+    "social": 7.07,
+    "positive": 4.04,
+    "negative": 0.98,
+    "order": 4.25,
+    "insight": 1.23,
+    "pct_exclaim": 0.57,
+    "pct_long_words": 20.68
+   },
+   "tone_spread": {
+    "reasoning": 1.05,
+    "hedges": 1.87,
+    "certainty": 1.89,
+    "intensifiers": 1.0,
+    "social": 3.69,
+    "positive": 2.23,
+    "negative": 1.05,
+    "order": 2.05,
+    "insight": 1.09,
+    "pct_exclaim": 1.28,
+    "pct_long_words": 2.46
    }
   }
  ]
