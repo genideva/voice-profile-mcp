@@ -5,80 +5,181 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Who do you write like?</title>
 <meta name="description" content="Paste your writing. See which of 37 public-domain writers, fiction and non-fiction, it matches on measured style. Nothing is stored.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Courier+Prime:wght@400;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #faf8f4; --fg: #1f1d1a; --muted: #6b665e; --line: #e2ddd3;
-    --card: #ffffff; --accent: #8a3b12; --accent-fg: #ffffff; --bar: #d9cbb8; --bar-you: #8a3b12;
+    --desk: #e9e2d3; --paper: #fdfbf5; --ink: #1d2433; --muted: #6a6558;
+    --rule: #c9daea; --margin: #e4a3a3; --red: #c0262d; --card: #fffdf6;
+    --card-rule: #e3e8ee; --shadow: 0 1px 2px rgba(60,40,10,.08), 0 8px 24px rgba(60,40,10,.10);
+    --hole: #e9e2d3; --btn: #1d2433; --btn-fg: #fdfbf5;
   }
   @media (prefers-color-scheme: dark) {
-    :root { --bg: #171614; --fg: #ece8e1; --muted: #a29c92; --line: #2f2c28;
-      --card: #1f1d1a; --accent: #e08a55; --accent-fg: #171614; --bar: #3a352f; --bar-you: #e08a55; }
+    :root {
+      --desk: #15130f; --paper: #24211b; --ink: #ece4d4; --muted: #a59d8c;
+      --rule: #3a3a3e; --margin: #6b3434; --red: #ff6b6b; --card: #2a261f;
+      --card-rule: #3a352c; --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.35);
+      --hole: #15130f; --btn: #ece4d4; --btn-fg: #24211b;
+    }
   }
   * { box-sizing: border-box; }
-  body { margin: 0; background: var(--bg); color: var(--fg);
-    font: 17px/1.55 Georgia, "Iowan Old Style", "Times New Roman", serif; }
-  main { max-width: 720px; margin: 0 auto; padding: 40px 16px 64px; }
-  h1 { font-size: 2rem; line-height: 1.2; margin: 0 0 8px; font-weight: normal; }
-  .lede { color: var(--muted); margin: 0 0 28px; }
-  .sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-  textarea { width: 100%; min-height: 220px; padding: 14px; border: 1px solid var(--line);
-    border-radius: 8px; background: var(--card); color: var(--fg); font: inherit; resize: vertical; }
-  .row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin: 12px 0 0; font-size: 14px; }
-  button { font: 600 15px/1 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    padding: 12px 18px; border-radius: 8px; border: 0; background: var(--accent); color: var(--accent-fg); cursor: pointer; }
-  button.link { background: none; color: var(--accent); padding: 0; text-decoration: underline; }
-  button:disabled { opacity: .6; cursor: default; }
-  .note { color: var(--muted); font-size: 13px; }
-  #err { color: #b3261e; margin-top: 16px; }
-  #out { margin-top: 36px; }
-  .match { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 18px 20px; margin-bottom: 12px; }
-  .match .rank { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
-  .match h2 { font-size: 1.35rem; font-weight: normal; margin: 4px 0 2px; }
-  .match .work { color: var(--muted); font-style: italic; margin-bottom: 10px; }
-  .match ul { margin: 0; padding-left: 18px; font-size: 14px; }
-  h3 { font-size: 1.1rem; font-weight: normal; margin: 32px 0 10px; }
-  table { width: 100%; border-collapse: collapse; font-size: 14px; }
-  td, th { text-align: left; padding: 8px 6px; border-bottom: 1px solid var(--line); vertical-align: top; }
-  th { color: var(--muted); font-weight: 600; }
-  td.num { white-space: nowrap; }
-  footer { margin-top: 48px; font-size: 13px; color: var(--muted); }
-  a { color: var(--accent); }
+  html { background: var(--desk); }
+  body { margin: 0; color: var(--ink); background: var(--desk);
+    font: 17px/1.6 "Libre Baskerville", Georgia, serif; }
+  main { max-width: 760px; margin: 0 auto; padding: 48px 16px 72px; }
+  .type { font-family: "Courier Prime", "Courier New", monospace; }
+  .pen { font-family: "Caveat", "Bradley Hand", cursive; color: var(--red); }
+
+  /* Title page */
+  header { text-align: center; margin-bottom: 36px; }
+  .imprint { font-size: 12px; letter-spacing: .32em; text-transform: uppercase; color: var(--muted); }
+  h1 { font-weight: 400; font-size: clamp(1.9rem, 5vw, 2.7rem); line-height: 1.15; margin: 14px 0 12px; }
+  h1 em { font-style: italic; }
+  .rule-orn { width: 72px; height: 1px; background: var(--ink); opacity: .5; margin: 18px auto; position: relative; }
+  .rule-orn::after { content: "❦"; position: absolute; left: 50%; top: -12px; transform: translateX(-50%);
+    background: var(--desk); padding: 0 8px; font-size: 16px; opacity: .9; }
+  .lede { color: var(--muted); max-width: 580px; margin: 0 auto; font-size: 15px; }
+
+  /* Notebook page */
+  .page { position: relative; background: var(--paper); box-shadow: var(--shadow);
+    border-radius: 3px; padding: 26px 22px 22px 76px; }
+  .page::before { content: ""; position: absolute; top: 0; bottom: 0; left: 58px; width: 2px; background: var(--margin); opacity: .8; }
+  .holes { position: absolute; left: 18px; top: 0; bottom: 0; display: flex; flex-direction: column; justify-content: space-around; }
+  .holes i { width: 16px; height: 16px; border-radius: 50%; background: var(--hole); box-shadow: inset 0 1px 2px rgba(0,0,0,.18); }
+  .page-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px;
+    border-bottom: 1px solid var(--rule); padding-bottom: 6px; margin-bottom: 0; font-size: 13px; color: var(--muted); }
+  .page-head .pen { font-size: 22px; color: var(--muted); }
+  textarea { display: block; width: 100%; min-height: 320px; border: 0; outline: 0; resize: vertical;
+    padding: 4px 0 0; margin: 0; color: var(--ink); font: 17px/32px "Libre Baskerville", Georgia, serif;
+    background-color: transparent; background-attachment: local;
+    background-image: repeating-linear-gradient(to bottom, transparent 0, transparent 31px, var(--rule) 31px, var(--rule) 32px); }
+  textarea::placeholder { color: var(--muted); font-style: italic; opacity: .8; }
+  .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 18px; margin-top: 18px; }
+  button { cursor: pointer; }
+  .hand-in { font: 700 15px/1 "Courier Prime", monospace; letter-spacing: .06em; text-transform: uppercase;
+    background: var(--btn); color: var(--btn-fg); border: 0; border-radius: 2px; padding: 14px 22px; }
+  .hand-in:disabled { opacity: .55; cursor: default; }
+  .sample { background: none; border: 0; padding: 0; font: 600 24px/1 "Caveat", cursive; color: var(--red);
+    text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+  .fine { font-size: 12px; color: var(--muted); margin: 14px 0 0; }
+  #err { margin-top: 18px; font-size: 26px; }
+
+  /* Graded result */
+  #out { margin-top: 44px; }
+  .verdict { position: relative; background: var(--paper); box-shadow: var(--shadow); border-radius: 3px;
+    padding: 30px 28px 26px; display: grid; grid-template-columns: auto 1fr; gap: 10px 26px; align-items: center; }
+  .grade { width: 118px; height: 118px; display: grid; place-items: center; transform: rotate(-8deg);
+    border: 3px solid var(--red); border-radius: 50% 46% 52% 48% / 48% 52% 46% 50%; }
+  .grade span { font: 700 64px/1 "Caveat", cursive; color: var(--red); }
+  .grade.orig { width: auto; height: auto; padding: 10px 14px; border-radius: 4px; border-width: 3px; transform: rotate(-6deg); }
+  .grade.orig span { font: 700 22px/1 "Courier Prime", monospace; letter-spacing: .14em; }
+  .verdict .label { font-size: 12px; letter-spacing: .24em; text-transform: uppercase; color: var(--muted); }
+  .verdict h2 { font-weight: 400; font-size: 1.9rem; line-height: 1.2; margin: 4px 0 2px; }
+  .verdict .work { font-style: italic; color: var(--muted); font-size: 15px; }
+  .verdict .comment { grid-column: 1 / -1; font-size: 30px; line-height: 1.15; margin-top: 8px; }
+  .verdict .note { grid-column: 1 / -1; font-size: 12px; color: var(--muted); }
+
+  h3 { font: 400 13px/1 "Courier Prime", monospace; letter-spacing: .26em; text-transform: uppercase;
+    color: var(--muted); margin: 44px 0 16px; text-align: center; }
+
+  /* Library catalog cards */
+  .cards { display: grid; gap: 18px; }
+  .card { position: relative; background: var(--card); box-shadow: var(--shadow); border-radius: 2px;
+    padding: 18px 22px 16px; font-family: "Courier Prime", monospace; font-size: 14px; line-height: 24px;
+    background-image: linear-gradient(var(--red), var(--red)), repeating-linear-gradient(to bottom, transparent 0, transparent 23px, var(--card-rule) 23px, var(--card-rule) 24px);
+    background-size: 100% 1px, 100% 100%; background-position: 0 72px, 0 78px; background-repeat: no-repeat, no-repeat; }
+  .card .call { font-size: 12px; color: var(--muted); }
+  .card .who { font: 700 18px/26px "Libre Baskerville", serif; margin: 0 0 12px; padding-right: 70px;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .card .meta { margin-bottom: 4px; }
+  .card .meta em { font-family: "Libre Baskerville", serif; }
+  .card .mini { position: absolute; top: 10px; right: 18px; font: 700 40px/1 "Caveat", cursive; color: var(--red); transform: rotate(-6deg); }
+  .card .alike { margin-top: 2px; }
+  .card .ink { font: 500 21px/24px "Caveat", cursive; color: var(--red); display: block; }
+  .card a { color: inherit; }
+
+  /* Report card */
+  .report { background: var(--paper); box-shadow: var(--shadow); border-radius: 3px; padding: 8px 22px 18px; overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font: 14px/1.4 "Courier Prime", monospace; }
+  th { text-align: left; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted);
+    padding: 14px 8px 8px; border-bottom: 2px solid var(--ink); }
+  td { padding: 9px 8px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  td.you { font-weight: 700; white-space: nowrap; }
+  td .pen { font-size: 19px; }
+  .method { font-size: 12px; color: var(--muted); margin-top: 12px; }
+
+  footer { margin-top: 56px; text-align: center; font-size: 13px; color: var(--muted); }
+  footer a { color: var(--ink); }
+
+  @media (max-width: 560px) {
+    .page { padding: 20px 16px 18px 46px; }
+    .page::before { left: 34px; }
+    .holes { left: 9px; }
+    .holes i { width: 12px; height: 12px; }
+    .verdict { grid-template-columns: 1fr; text-align: center; justify-items: center; padding: 26px 18px 22px; }
+    .card .who { padding-right: 52px; }
+    .report { padding: 4px 12px 14px; }
+  }
 </style>
 </head>
 <body>
 <main>
-  <h1>Do you write like Austen, Emerson or Henry Ford?</h1>
-  <p class="lede">Paste something you wrote. It's measured on nine features of style (sentence length and rhythm, pronouns, questions, paragraph shape) and compared with 37 public-domain writers: novelists, essayists, memoirists, and business and advice writers, from Austen to Franklin to Emily Post. Counted, not guessed by a model.</p>
+  <header>
+    <div class="imprint type">The Style Notebook</div>
+    <h1>Do you write like <em>Austen</em>, <em>Emerson</em> or <em>Henry&nbsp;Ford</em>?</h1>
+    <div class="rule-orn"></div>
+    <p class="lede">Write or paste something of yours on the page. It's measured on nine features of style (sentence length and rhythm, pronouns, questions, paragraph shape) and compared with 37 public-domain writers: novelists, essayists, memoirists, and business and advice writers. Counted, not guessed by a model.</p>
+  </header>
 
-  <textarea id="text" placeholder="Paste at least five sentences of your own writing: a blog post, a memo, an email. 200+ words gives a steadier result."></textarea>
-  <div class="row sans">
-    <button id="go">Compare my writing</button>
-    <button class="link" id="sample" type="button">Try the Gettysburg Address</button>
-  </div>
-  <p class="note sans">Use text you wrote without AI help, or you'll measure the AI. Nothing is stored or logged: the text is measured in memory and discarded.</p>
-  <div id="err" class="sans" role="alert"></div>
+  <section class="page">
+    <div class="holes" aria-hidden="true"><i></i><i></i><i></i></div>
+    <div class="page-head type"><span>Name: <span class="pen">you</span></span><span>Assignment: your own words</span></div>
+    <label for="text" class="sr" style="position:absolute;left:-9999px">Your writing</label>
+    <textarea id="text" placeholder="At least five sentences of your own writing: a blog post, a memo, an email. 200+ words gives a steadier result."></textarea>
+    <div class="actions">
+      <button class="hand-in" id="go">Hand it in</button>
+      <button class="sample" id="sample" type="button">or try the Gettysburg Address</button>
+    </div>
+    <p class="fine type">Use writing you did without AI help, or you'll measure the AI. Nothing is stored or logged: your text is measured in memory and discarded.</p>
+  </section>
+
+  <div id="err" class="pen" role="alert"></div>
   <div id="out" aria-live="polite"></div>
 
-  <footer class="sans">
+  <footer>
     Open source (MIT): <a href="https://github.com/genideva/voice-profile-mcp">voice-profile-mcp</a> on GitHub.
-    Want a full voice profile and draft checks in ChatGPT or Claude? See the <a href="https://github.com/genideva/voice-profile">Voice Profile plugin</a>.
-    This compares measurable style only. It says nothing about quality, personality, or the authors as people.
+    Want a full voice profile and draft checks in ChatGPT or Claude? See the <a href="https://github.com/genideva/voice-profile">Voice Profile plugin</a>.<br>
+    The grade marks resemblance, not quality. It says nothing about personality, or the writers as people.
   </footer>
 </main>
 <script>
 const GETTYSBURG = "Four score and seven years ago our fathers brought forth on this continent, a new nation, conceived in Liberty, and dedicated to the proposition that all men are created equal.\n\nNow we are engaged in a great civil war, testing whether that nation, or any nation so conceived and so dedicated, can long endure. We are met on a great battle-field of that war. We have come to dedicate a portion of that field, as a final resting place for those who here gave their lives that that nation might live. It is altogether fitting and proper that we should do this.\n\nBut, in a larger sense, we can not dedicate, we can not consecrate, we can not hallow this ground. The brave men, living and dead, who struggled here, have consecrated it, far above our poor power to add or detract. The world will little note, nor long remember what we say here, but it can never forget what they did here. It is for us the living, rather, to be dedicated here to the unfinished work which they who fought here have thus far so nobly advanced. It is rather for us to be here dedicated to the great task remaining before us, that from these honored dead we take increased devotion to that cause for which they gave the last full measure of devotion, that we here highly resolve that these dead shall not have died in vain, that this nation, under God, shall have a new birth of freedom, and that government of the people, by the people, for the people, shall not perish from the earth.";
 
+// Resemblance grade from distance. Calibrated on the library itself: an author's
+// nearest other author sits at 0.2-1.1 (median ~0.45).
+const GRADES = [[0.45,"A+"],[0.6,"A"],[0.75,"A−"],[0.9,"B+"],[1.05,"B"],[1.2,"B−"],[1.4,"C+"],[1.65,"C"]];
+const grade = (d) => { for (const [t, g] of GRADES) if (d < t) return g; return null; };
+const comment = (g, name) => {
+  if (!g) return "A voice of your own. No close match on the shelf.";
+  if (g.startsWith("A+") || g === "A") return `Uncanny. You could ghostwrite for ${name}.`;
+  if (g.startsWith("A") || g === "B+") return `Strong resemblance to ${name}. Nicely done.`;
+  if (g.startsWith("B")) return `Some family resemblance to ${name}.`;
+  return `Distant cousins with ${name}, at best.`;
+};
+
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const fmt = (n) => (Math.round(n * 10) / 10).toString();
+const last = (name) => name.split(" ").slice(-1)[0];
 
 $("sample").onclick = () => { $("text").value = GETTYSBURG; $("text").focus(); };
 
 $("go").onclick = async () => {
   const text = $("text").value.trim();
   $("err").textContent = ""; $("out").innerHTML = "";
-  if (!text) { $("err").textContent = "Paste some writing first."; return; }
-  $("go").disabled = true; $("go").textContent = "Measuring…";
+  if (!text) { $("err").textContent = "The page is blank. Write something first."; return; }
+  $("go").disabled = true; $("go").textContent = "Marking…";
   try {
     const res = await fetch("/mcp", {
       method: "POST",
@@ -86,7 +187,7 @@ $("go").onclick = async () => {
       body: JSON.stringify({ jsonrpc: "2.0", id: 1, method: "tools/call",
         params: { name: "compare_to_authors", arguments: { text, top_n: 3 } } })
     });
-    if (res.status === 429) throw new Error("Too many requests. Try again in a minute.");
+    if (res.status === 429) throw new Error("Too many papers at once. Try again in a minute.");
     const data = await res.json();
     if (data.error) throw new Error(data.error.message || "Something went wrong.");
     const r = data.result || {};
@@ -95,27 +196,47 @@ $("go").onclick = async () => {
   } catch (e) {
     $("err").textContent = e.message || "Something went wrong.";
   } finally {
-    $("go").disabled = false; $("go").textContent = "Compare my writing";
+    $("go").disabled = false; $("go").textContent = "Hand it in";
   }
 };
 
 function render(d) {
-  const ranks = ["Closest match", "Second", "Third"];
-  let html = d.nearest_authors.map((a, i) => `
-    <div class="match">
-      <div class="rank sans">${ranks[i] || ""}</div>
-      <h2>${esc(a.author)}</h2>
-      <div class="work">${esc(a.work)} (${a.year}) · <a href="${esc(a.source)}">read it free</a></div>
-      <ul class="sans">
-        <li>Most alike on ${a.most_alike_on.map(esc).join(", ")}</li>
-        ${a.most_different_on.map(f => `<li>Differs on ${esc(f.feature)}: you ${fmt(f.you)}, ${esc(a.author.split(" ").slice(-1)[0])} ${fmt(f.author)}</li>`).join("")}
-      </ul>
-    </div>`).join("");
-  html += `<h3>Closest author on each feature</h3>
-    <table class="sans"><tr><th>Feature</th><th>You</th><th>Closest author</th></tr>` +
-    Object.entries(d.closest_author_per_feature).map(([k, v]) =>
-      `<tr><td>${esc(k)}</td><td class="num">${fmt(v.you)}</td><td>${esc(v.closest_author)} (${fmt(v.their_value)})</td></tr>`).join("") +
-    `</table><p class="note sans">Based on ${esc(d.basis)}. ${esc(d.method)}</p>`;
+  const top = d.nearest_authors[0];
+  const g = grade(top.distance);
+  let html = `
+    <section class="verdict">
+      <div class="grade ${g ? "" : "orig"}"><span>${g || "ORIGINAL"}</span></div>
+      <div>
+        <div class="label type">Closest match</div>
+        <h2>${esc(top.author)}</h2>
+        <div class="work">${esc(top.work)}, ${top.year}</div>
+      </div>
+      <div class="comment pen">${esc(comment(g, last(top.author)))}</div>
+      <div class="note type">Grade = how closely your style resembles theirs, not how good your writing is.</div>
+    </section>
+    <h3>From the card catalog</h3>
+    <div class="cards">` +
+    d.nearest_authors.map((a, i) => {
+      const ag = grade(a.distance);
+      return `
+      <article class="card">
+        <div class="call">No. ${i + 1} · ${esc(a.genre)}</div>
+        <div class="who">${esc(a.author)}</div>
+        <span class="mini">${ag || "—"}</span>
+        <div class="meta"><em>${esc(a.work)}</em> (${a.year}) · <a href="${esc(a.source)}">read it free</a></div>
+        <div class="alike">Alike on: ${a.most_alike_on.map(esc).join("; ")}.</div>
+        ${a.most_different_on.map(f => `<span class="ink">✎ ${esc(f.feature)}: you ${fmt(f.you)}, ${esc(last(a.author))} ${fmt(f.author)}</span>`).join("")}
+      </article>`;
+    }).join("") + `</div>
+    <h3>Report card</h3>
+    <section class="report">
+      <table>
+        <tr><th>Subject</th><th>You</th><th>Nearest writer</th></tr>` +
+        Object.entries(d.closest_author_per_feature).map(([k, v]) =>
+          `<tr><td>${esc(k)}</td><td class="you">${fmt(v.you)}</td><td>${esc(v.closest_author)} <span class="pen">(${fmt(v.their_value)})</span></td></tr>`).join("") +
+      `</table>
+      <p class="method type">Based on ${esc(d.basis)}. ${esc(d.method)}</p>
+    </section>`;
   $("out").innerHTML = html;
   $("out").scrollIntoView({ behavior: "smooth", block: "start" });
 }
