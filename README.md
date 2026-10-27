@@ -22,6 +22,17 @@ Lincoln's closest matches include a biography of Lincoln. Feature by feature, hi
 
 ![The try-it page showing the Gettysburg Address result](docs/demo.png)
 
+## How it reads
+
+Next to the author match, the page scores how the writing comes across, the way psychologists score personality in text: by counting word categories.
+
+- **Five traits** (the Big Five, as expressed in text): Reserved–Outgoing, Cool–Warm, Loose–Organized, Concrete–Curious, Calm–Tense.
+- **Four tone markers:** Argument (because, therefore, however), Hedging (perhaps, might), Certainty (clearly, always), Emphasis (very, really).
+
+Each is placed on a five-level scale against the library, with the counts that drove it and a tip for moving it. The Gettysburg Address reads very outgoing (70 uses of *we/us/our* per 1,000 words; the library's typical is 10), very warm and very calm.
+
+This describes the **writing, never the writer**. Word-category links to personality are real but modest, so it's a writing aid: change the words and the reading changes. The word lists live in [`api/_core/tone.py`](api/_core/tone.py), written for this project after the approach in Pennebaker & King (1999), Yarkoni (2010) and Schwartz et al. (2013). It is kept separate from the plugin's measuring code.
+
 ## Try it
 
 - **In a browser:** [voice-profile-mcp.vercel.app](https://voice-profile-mcp.vercel.app/)

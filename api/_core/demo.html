@@ -87,6 +87,29 @@
     letter-spacing: .1em; text-transform: uppercase; transform: rotate(-1.5deg); }
   .stamp:nth-child(2n) { transform: rotate(1.2deg); }
   .why { margin: 0; padding-left: 18px; text-align: left; font-size: 12px; color: var(--muted); line-height: 1.6; }
+  .reads { background: var(--paper); box-shadow: var(--shadow); border-radius: 3px; padding: 22px 24px 18px; }
+  .reads .intro { font-size: 13px; color: var(--muted); margin: 0 0 6px; }
+  .trait { padding: 14px 0 12px; border-bottom: 1px solid var(--rule); }
+  .trait:last-of-type { border-bottom: 0; }
+  .trait-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  .trait-name { font-size: 17px; }
+  .trait-verdict { font: 700 26px/1 "Caveat", cursive; color: var(--red); }
+  .scale { position: relative; height: 26px; margin: 8px 0 2px; }
+  .scale .line { position: absolute; left: 0; right: 0; top: 12px; height: 2px; background: var(--ink); opacity: .7; }
+  .scale .tick { position: absolute; top: 7px; width: 2px; height: 12px; background: var(--ink); opacity: .45; transform: translateX(-1px); }
+  .scale .mark { position: absolute; top: -2px; transform: translateX(-50%) rotate(-12deg);
+    font: 700 28px/1 "Caveat", cursive; color: var(--red); }
+  .ends { display: flex; justify-content: space-between; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  .trait .detail { font-size: 12px; color: var(--muted); margin-top: 6px; line-height: 1.6; }
+  .trait .tip { display: block; font: 500 21px/1.15 "Caveat", cursive; color: var(--red); margin-top: 6px; }
+  .markers { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-top: 16px; }
+  .marker { border: 1px solid var(--rule); border-radius: 3px; padding: 10px 12px; }
+  .marker .k { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+  .marker .v { font: 700 24px/1.1 "Caveat", cursive; color: var(--red); margin: 2px 0; }
+  .marker .n { font-size: 11px; color: var(--muted); }
+  .marker .tip { font-size: 12px; margin-top: 6px; }
+  .reads .warn { font-size: 12px; color: var(--red); margin: 0 0 8px; }
+  .reads .fine { margin-top: 14px; }
   h3 { font: 400 13px/1 "Courier Prime", monospace; letter-spacing: .26em; text-transform: uppercase;
     color: var(--muted); margin: 44px 0 16px; text-align: center; }
 
@@ -157,7 +180,7 @@
   <footer>
     Open source (MIT): <a href="https://github.com/genideva/voice-profile-mcp">voice-profile-mcp</a> on GitHub.
     Want a full voice profile and draft checks in ChatGPT or Claude? See the <a href="https://github.com/genideva/voice-profile">Voice Profile plugin</a>.<br>
-    The grade marks resemblance, not quality. It says nothing about personality, or the writers as people.
+    The grade marks resemblance, not quality. “How it reads” describes the writing, never the writer.
   </footer>
 </main>
 <script>
@@ -201,6 +224,40 @@ function styleWords(perFeature) {
     else if (w.low && w.lo != null && v < w.lo) out.push({ word: w.low, why: w.why(v), x: (w.lo - v) / iqr });
   }
   return out.sort((a, b) => b.x - a.x).slice(0, 4);
+}
+
+const MARKER_NAMES = { argumentative: "Argument", hedged: "Hedging", confident: "Certainty", emphatic: "Emphasis" };
+function readsHtml(r) {
+  if (!r) return "";
+  const pos = (lvl) => (lvl + 2) * 25; // -2..2 -> 0..100%
+  const traits = r.traits.map(t => {
+    const [lo, hi] = t.trait === "neuroticism" ? ["Calm", "Tense"] :
+      ({ extraversion: ["Reserved", "Outgoing"], agreeableness: ["Cool", "Warm"], conscientiousness: ["Loose", "Organized"], openness: ["Concrete", "Curious"] })[t.trait];
+    // Mark sits in the band its verdict names, nudged within the band by the score.
+    const band = Math.max(-0.4, Math.min(0.4, (t.score - [-1.6, -0.8, 0, 0.8, 1.6][t.level + 2]) / 2));
+    const left = Math.max(3, Math.min(97, pos(t.level) + band * 25));
+    return `<div class="trait">
+      <div class="trait-top"><span class="trait-name">${esc(lo)} – ${esc(hi)}</span><span class="trait-verdict">reads ${esc(t.reads_as.toLowerCase())}</span></div>
+      <div class="scale" aria-hidden="true"><div class="line"></div>${[0,25,50,75,100].map(x => `<span class="tick" style="left:${x}%"></span>`).join("")}<span class="mark" style="left:${left}%">✕</span></div>
+      <div class="ends type"><span>${esc(lo)}</span><span>${esc(hi)}</span></div>
+      <div class="detail type">Driven by ${t.drivers.map(x => `${esc(x.marker)}: you ${fmt(x.you)}, library ${fmt(x.library_typical)}`).join("; ")} (per 1,000 words). Reads most like ${esc(t.reads_like)}.</div>
+      ${t.tip ? `<span class="tip">→ ${esc(t.tip)}</span>` : ""}
+    </div>`;
+  }).join("");
+  const markers = r.markers.map(m => `<div class="marker type">
+      <div class="k">${esc(MARKER_NAMES[m.marker] || m.marker)}</div>
+      <div class="v">${esc(m.reads_as)}</div>
+      <div class="n">${fmt(m.you)} vs library ${fmt(m.library_typical)} per 1,000 words</div>
+      ${m.tip ? `<div class="tip">${esc(m.tip)}</div>` : ""}
+    </div>`).join("");
+  return `<h3>How it reads</h3>
+    <section class="reads">
+      <p class="intro type">How your writing comes across, scored the way psychologists score personality in text: by counting word categories. It describes the writing, not you. Change the words and the reading changes.</p>
+      ${r.warning ? `<p class="warn type">${esc(r.warning)}</p>` : ""}
+      ${traits}
+      <div class="markers">${markers}</div>
+      <p class="fine type">${esc(r.note)}</p>
+    </section>`;
 }
 
 const $ = (id) => document.getElementById(id);
@@ -253,6 +310,7 @@ function render(d) {
         <ul class="why type">${words.map(w => `<li><b>${esc(w.word)}</b>: ${esc(w.why)}</li>`).join("")}</ul></div>` : ""}
       <div class="note type">Grade = how closely your style resembles theirs, not how good your writing is.</div>
     </section>
+    ${readsHtml(d.how_it_reads)}
     <h3>From the card catalog</h3>
     <div class="cards">` +
     d.nearest_authors.map((a, i) => {
