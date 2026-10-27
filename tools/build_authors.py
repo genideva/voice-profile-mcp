@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 """Rebuild api/_core/authors.json from public-domain texts on Project Gutenberg.
 
-Usage: python3 tools/build_authors.py CACHE_DIR
+Usage: python3 tools/build_authors.py CACHE_DIR [--all]
+
+By default, works already in authors.json are kept as they are and only new
+entries in WORKS are downloaded and measured. Pass --all to re-measure every work.
 
 Downloads each book once into CACHE_DIR, strips the Gutenberg header and
 footer, cuts the body into ~1,500-word chunks, measures every chunk with the
@@ -60,6 +63,11 @@ WORKS = [
     ("Lytton Strachey", "Eminent Victorians", 1918, "biography", 2447),
     ("James Boswell", "The Life of Samuel Johnson", 1791, "biography", 1564),
     ("Ida M. Tarbell", "The Early Life of Abraham Lincoln", 1896, "biography", 57555),
+    # 1920s novels that have entered the US public domain.
+    ("F. Scott Fitzgerald", "The Great Gatsby", 1925, "novel", 64317),
+    ("Virginia Woolf", "Mrs. Dalloway", 1925, "novel", 71865),
+    ("Ernest Hemingway", "The Sun Also Rises", 1926, "novel", 67138),
+    ("Ernest Hemingway", "A Farewell to Arms", 1929, "novel", 75201),
 ]
 CHUNK_WORDS = 1500
 MAX_CHUNKS = 40
@@ -102,8 +110,16 @@ def chunks(paras):
 def main():
     cache = sys.argv[1]
     os.makedirs(cache, exist_ok=True)
+    out = os.path.join(HERE, "..", "api", "_core", "authors.json")
+    existing = {}
+    if "--all" not in sys.argv and os.path.exists(out):
+        existing = {a["source"]: a for a in json.load(open(out))["authors"]}
     authors = []
     for author, work, year, genre, gid in WORKS:
+        src = "https://www.gutenberg.org/ebooks/%d" % gid
+        if src in existing:
+            authors.append(existing[src])
+            continue
         raw = fetch(gid, cache)
         title_line = re.search(r"Title:\s*(.+)", raw)
         docs = [measure(c) for c in chunks(body(raw))]
@@ -116,7 +132,6 @@ def main():
                         "chunks": len(docs), "words": words, "center": center, "spread": spread})
         print("%-22s %-45s %3d chunks %7d words  [%s]" % (
             author, work[:45], len(docs), words, title_line.group(1).strip()[:40] if title_line else "?"))
-    out = os.path.join(HERE, "..", "api", "_core", "authors.json")
     json.dump({"note": "Measured style features of public-domain works from Project Gutenberg. "
                        "Numbers only; no text is stored. Not personality claims about any person.",
                "chunk_words": CHUNK_WORDS, "authors": authors}, open(out, "w"), indent=1)

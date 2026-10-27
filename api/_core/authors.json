@@ -2184,6 +2184,138 @@
     "pct_exclaim": 1.28,
     "pct_long_words": 2.46
    }
+  },
+  {
+   "author": "F. Scott Fitzgerald",
+   "work": "The Great Gatsby",
+   "year": 1925,
+   "genre": "novel",
+   "source": "https://www.gutenberg.org/ebooks/64317",
+   "chunks": 26,
+   "words": 40135,
+   "center": {
+    "mean_sent_len": 16.6,
+    "median_sent_len": 14.26,
+    "stdev_sent_len": 11.12,
+    "pct_short_le8": 29.94,
+    "pct_long_ge25": 22.7,
+    "contractions_per_1k": 19.02,
+    "first_person_per_1k": 38.19,
+    "second_person_per_1k": 10.74,
+    "pct_questions": 5.46,
+    "sents_per_para": 2.67
+   },
+   "spread": {
+    "mean_sent_len": 3.16,
+    "median_sent_len": 3.77,
+    "stdev_sent_len": 1.56,
+    "pct_short_le8": 9.74,
+    "pct_long_ge25": 10.3,
+    "contractions_per_1k": 6.82,
+    "first_person_per_1k": 13.16,
+    "second_person_per_1k": 4.99,
+    "pct_questions": 3.26,
+    "sents_per_para": 0.34
+   }
+  },
+  {
+   "author": "Ernest Hemingway",
+   "work": "The Sun Also Rises",
+   "year": 1926,
+   "genre": "novel",
+   "source": "https://www.gutenberg.org/ebooks/67138",
+   "chunks": 33,
+   "words": 51458,
+   "center": {
+    "mean_sent_len": 11.04,
+    "median_sent_len": 8.54,
+    "stdev_sent_len": 8.67,
+    "pct_short_le8": 51.86,
+    "pct_long_ge25": 7.3,
+    "contractions_per_1k": 19.05,
+    "first_person_per_1k": 39.41,
+    "second_person_per_1k": 13.09,
+    "pct_questions": 5.46,
+    "sents_per_para": 4.54
+   },
+   "spread": {
+    "mean_sent_len": 3.22,
+    "median_sent_len": 2.33,
+    "stdev_sent_len": 4.02,
+    "pct_short_le8": 13.67,
+    "pct_long_ge25": 5.94,
+    "contractions_per_1k": 15.04,
+    "first_person_per_1k": 18.62,
+    "second_person_per_1k": 10.59,
+    "pct_questions": 4.26,
+    "sents_per_para": 1.48
+   }
+  },
+  {
+   "author": "Ernest Hemingway",
+   "work": "A Farewell to Arms",
+   "year": 1929,
+   "genre": "novel",
+   "source": "https://www.gutenberg.org/ebooks/75201",
+   "chunks": 40,
+   "words": 62363,
+   "center": {
+    "mean_sent_len": 10.49,
+    "median_sent_len": 8.22,
+    "stdev_sent_len": 8.02,
+    "pct_short_le8": 53.21,
+    "pct_long_ge25": 5.85,
+    "contractions_per_1k": 19.18,
+    "first_person_per_1k": 51.63,
+    "second_person_per_1k": 20.32,
+    "pct_questions": 5.81,
+    "sents_per_para": 4.68
+   },
+   "spread": {
+    "mean_sent_len": 1.86,
+    "median_sent_len": 1.43,
+    "stdev_sent_len": 2.58,
+    "pct_short_le8": 9.13,
+    "pct_long_ge25": 3.95,
+    "contractions_per_1k": 12.31,
+    "first_person_per_1k": 14.21,
+    "second_person_per_1k": 12.78,
+    "pct_questions": 2.89,
+    "sents_per_para": 2.05
+   }
+  },
+  {
+   "author": "Virginia Woolf",
+   "work": "Mrs. Dalloway",
+   "year": 1925,
+   "genre": "novel",
+   "source": "https://www.gutenberg.org/ebooks/71865",
+   "chunks": 37,
+   "words": 58223,
+   "center": {
+    "mean_sent_len": 19.21,
+    "median_sent_len": 11.21,
+    "stdev_sent_len": 21.13,
+    "pct_short_le8": 41.31,
+    "pct_long_ge25": 23.88,
+    "contractions_per_1k": 3.37,
+    "first_person_per_1k": 2.9,
+    "second_person_per_1k": 2.24,
+    "pct_questions": 8.76,
+    "sents_per_para": 5.82
+   },
+   "spread": {
+    "mean_sent_len": 5.69,
+    "median_sent_len": 3.83,
+    "stdev_sent_len": 7.38,
+    "pct_short_le8": 9.08,
+    "pct_long_ge25": 9.19,
+    "contractions_per_1k": 2.61,
+    "first_person_per_1k": 3.69,
+    "second_person_per_1k": 2.21,
+    "pct_questions": 4.17,
+    "sents_per_para": 1.81
+   }
   }
  ]
 }
