@@ -36,7 +36,8 @@ This describes the **writing, never the writer**. Word-category links to persona
 ## Try it
 
 - **In a browser:** [voice-profile-mcp.vercel.app](https://voice-profile-mcp.vercel.app/)
-- **In ChatGPT or Claude:** install the [Voice Profile plugin](https://github.com/genideva/voice-profile). The server comes bundled, so there's nothing to connect by hand.
+- **In ChatGPT:** install the [Voice Profile plugin](https://github.com/genideva/voice-profile). The server comes bundled, so there's nothing to connect by hand.
+- **In Claude Code or Codex:** the same plugin runs these measurements on your own machine and never calls this server. To use the server's author comparison there too, add it as an MCP server (below).
 - **From any MCP client:** the endpoint is `https://voice-profile-mcp.vercel.app/mcp` (streamable HTTP, no authentication).
 
 ```bash
