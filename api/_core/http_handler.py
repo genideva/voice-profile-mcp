@@ -56,9 +56,23 @@ class Handler(BaseHTTPRequestHandler):
             self.send_header("Content-Type", ctype)
         self.send_header("Content-Length", str(len(data)))
         self.send_header("Cache-Control", "no-store")
+        self._cors()
         self.end_headers()
         if data:
             self.wfile.write(data)
+
+    def _cors(self):
+        # No auth and no cookies, so any origin may call it. Lets browser-based MCP clients connect.
+        self.send_header("Access-Control-Allow-Origin", "*")
+        self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+        self.send_header("Access-Control-Allow-Headers", "Content-Type, Accept, Mcp-Session-Id, MCP-Protocol-Version")
+        self.send_header("Access-Control-Max-Age", "86400")
+
+    def do_OPTIONS(self):
+        self.send_response(204)
+        self._cors()
+        self.send_header("Content-Length", "0")
+        self.end_headers()
 
     def _path(self):
         return self.path.split("?")[0].rstrip("/") or "/"
