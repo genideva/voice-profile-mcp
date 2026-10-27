@@ -18,7 +18,9 @@ The Gettysburg Address, run through `compare_to_authors`:
 | 2 | Ida M. Tarbell | *The Early Life of Abraham Lincoln* (1896) | 0.69 |
 | 3 | Emily Post | *Etiquette* (1922) | 0.70 |
 
-Lincoln's second-closest match is a biography of Lincoln. And Hemingway's two novels in the library pick each other as closest match (0.39), without being told they share an author. Feature by feature, his 40% share of 25+ word sentences matches Melville almost exactly (40.2%), and his sentence-length variation matches Mark Twain (19.3 vs 19.1). Lower distance is closer.
+Lincoln's second-closest match is a biography of Lincoln. Feature by feature, his 40% share of 25+ word sentences matches Melville almost exactly (40.2%), and his sentence-length variation matches Mark Twain (19.3 vs 19.1). Lower distance is closer.
+
+A check that the measuring works: Hemingway's two novels in the library pick each other as closest match (0.39), without being told they share an author.
 
 ![The try-it page showing the Gettysburg Address result](docs/demo.png)
 
