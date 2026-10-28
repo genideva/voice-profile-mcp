@@ -1,7 +1,7 @@
 """HTTP layer shared by the Vercel function and the local server.
 
 Routes:
-  POST /mcp                                   MCP streamable HTTP (JSON responses)
+  POST /mcp (or /)                            MCP streamable HTTP (JSON responses)
   GET  /.well-known/openai-apps-challenge     domain-verification token (env OPENAI_APPS_CHALLENGE)
   GET  /                                      try-it page for browsers (Accept: text/html), else plain text
 
@@ -98,7 +98,7 @@ class Handler(BaseHTTPRequestHandler):
         self._send(405, {"error": "No sessions to delete; this server is stateless."})
 
     def do_POST(self):
-        if self._path() not in ("/mcp", "/api/mcp"):
+        if self._path() not in ("/mcp", "/api/mcp", "/"):   # "/" too: people paste the bare domain as the server URL
             return self._send(404, {"error": "Not found"})
         addr = (self.headers.get("x-forwarded-for") or self.client_address[0] or "").split(",")[0].strip()
         if not _rate_ok(addr):
