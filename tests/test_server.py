@@ -108,6 +108,30 @@ class Tools(unittest.TestCase):
         self.assertTrue(r["isError"])
         self.assertIn("Pick a register", r["content"][0]["text"])
 
+    def test_length_split_is_flagged_not_called_two_modes(self):
+        # same voice, very different lengths: short single paragraphs vs long six-paragraph pieces
+        short = [{"text": ARGUE[i % 3], "title": "short %d" % i, "ai_touched": "no"} for i in range(4)]
+        long_ = [{"text": "\n\n".join(ARGUE[(i + j) % 3] for j in range(6)), "title": "long %d" % i, "ai_touched": "no"}
+                 for i in range(4)]
+        out = call("analyze_writing", {"samples": short + long_})["structuredContent"]
+        sug = out["register_suggestion"]
+        self.assertGreaterEqual(max(sug["median_words"]), 3 * min(sug["median_words"]))
+        self.assertFalse(sug["two_modes_likely"])
+        self.assertIn("driven by length", sug["length_warning"])
+
+    def test_similar_lengths_get_no_length_warning(self):
+        s = [dict(x, register="") for x in samples()] + [dict(x, register="", title=x["title"] + "b") for x in samples()]
+        out = call("analyze_writing", {"samples": s})["structuredContent"]
+        self.assertTrue(out["register_suggestion"]["two_modes_likely"])   # real argue/reflect split survives
+        self.assertNotIn("length_warning", out["register_suggestion"])
+
+    def test_short_samples_are_named(self):
+        tiny = {"text": "One. Two here. Three now. Four is it. Five done.", "title": "tiny", "ai_touched": "no"}
+        out = call("analyze_writing", {"samples": [tiny]})["structuredContent"]
+        self.assertEqual(out["short_samples"]["titles"], ["tiny"])
+        prof = call("build_voice_profile", {"samples": samples() + [dict(tiny, register="argue")]})["structuredContent"]
+        self.assertTrue(any("under 150 words" in f for f in prof["flags"]))
+
     def test_errors_do_not_echo_input(self):
         secret = "SECRET-PHRASE-123 " * 3
         r = call("check_draft", {"profile": {"registers": {}}, "draft": secret})

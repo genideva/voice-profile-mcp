@@ -22,6 +22,8 @@ MAX_SAMPLES = 60
 MAX_TOTAL_WORDS = 120_000
 MAX_DRAFT_WORDS = 15_000
 MIN_SENTENCES = 5
+SHORT_SAMPLE_WORDS = 150   # below this, rates swing on single sentences (one question in 5 = 20%)
+LENGTH_CONFOUND_RATIO = 3  # mode groups whose median lengths differ this much may be split by length, not voice
 REGISTER_RE = re.compile(r"^[a-z][a-z0-9-]{0,23}$")
 # Contractions are left out of author comparison: older printed English used
 # elisions ("receiv'd", "'tis") that inflate or distort the count.
@@ -88,16 +90,36 @@ def analyze_writing(samples):
     }
     if words < 3000:
         out["warning"] = "Under 3,000 words. Any profile built from this will be provisional."
+    short = _short_samples(docs)
+    if short:
+        out["short_samples"] = short
     if len(docs) >= 8 and not any(d["register"] for d in docs):
         assign, sep = two_means(docs)
         sizes = [assign.count(0), assign.count(1)]
+        medians = [statistics.median([d["counts"]["words"] for d, g in zip(docs, assign) if g == c]) for c in (0, 1)]
+        ratio = max(medians) / max(1, min(medians))
+        confounded = ratio >= LENGTH_CONFOUND_RATIO
         out["register_suggestion"] = {
             "separation": round(sep, 2),
-            "two_modes_likely": sep >= 1.5 and min(sizes) >= 3,
+            "two_modes_likely": sep >= 1.5 and min(sizes) >= 3 and not confounded,
             "groups": [[d["path"] for d, g in zip(docs, assign) if g == c] for c in (0, 1)],
+            "median_words": [int(m) for m in medians],
             "next_step": "Read each group, name the genre it shares, and pass that name as each sample's register.",
         }
+        if confounded:
+            out["register_suggestion"]["length_warning"] = (
+                "One group's samples are %.0fx longer than the other's (median %d vs %d words), so this split may "
+                "be driven by length, not voice. Merge short pieces into longer samples, or check that the groups "
+                "really read differently before labelling them." % (ratio, max(medians), min(medians)))
     return out
+
+
+def _short_samples(docs):
+    short = [d["path"] for d in docs if d["counts"]["words"] < SHORT_SAMPLE_WORDS]
+    if not short:
+        return None
+    return {"titles": short, "note": "Under %d words: a single question or 'I' moves these numbers a lot. Paste "
+                                     "several short pieces together as one sample for steadier results." % SHORT_SAMPLE_WORDS}
 
 
 def build_voice_profile(samples, banned=None):
@@ -121,10 +143,13 @@ def build_voice_profile(samples, banned=None):
             row["fails_vs_" + n] = fails(d["metrics"], profile["registers"][n]["bands"])
         profile["doc_checks"].append(row)
     flags = [r["path"] for r in profile["doc_checks"] if r["fails_vs_" + r["register"]] >= 3]
+    short = _short_samples(docs)
     return {
         "profile": profile,
         "skipped": skipped,
-        "flags": ["'%s' fails 3+ checks against its own register: mislabelled, or a third mode?" % p for p in flags],
+        "flags": ["'%s' fails 3+ checks against its own register: mislabelled, or a third mode?" % p for p in flags]
+                 + (["%d sample(s) under %d words widen the ranges: %s" % (len(short["titles"]), SHORT_SAMPLE_WORDS,
+                                                                         ", ".join(short["titles"][:10]))] if short else []),
         "save_instructions": "Save the 'profile' object as profile.json. Pass it to check_draft to score drafts. "
                              "This service keeps nothing, so the user must keep the file.",
     }

@@ -39,7 +39,8 @@ TOOLS = [
         "description": "Measure ten surface features of the user's own writing (sentence length and variation, "
                        "short and long sentence shares, contractions, first and second person, questions, paragraph "
                        "length) per sample and overall. Use first, on writing the user produced before using AI. "
-                       "With 8+ unlabeled samples it also suggests whether they write in two distinct modes. "
+                       "With 8+ unlabeled samples it also suggests whether they write in two distinct modes, and warns "
+                       "when a split looks driven by sample length rather than voice. "
                        "Read-only: nothing is stored.",
         "inputSchema": {"type": "object", "properties": {"samples": {"type": "array", "items": SAMPLE_SCHEMA,
                         "maxItems": vt.MAX_SAMPLES}}, "required": ["samples"]},
