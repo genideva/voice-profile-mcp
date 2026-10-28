@@ -21,6 +21,18 @@ _hits = {}
 _DEMO = None
 
 
+_ENDPOINT_PAGE = b"""<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>voice-profile MCP endpoint</title>
+<style>body{font:17px/1.55 Georgia,serif;max-width:36em;margin:3em auto;padding:0 16px;color:#222;background:#fdfcf8}
+code{background:#eee;padding:2px 5px;border-radius:3px;word-break:break-all}a{color:#245}</style></head><body>
+<h1>This is an MCP server address</h1>
+<p>It is meant for an AI app, not a browser. To connect, add this URL as a custom connector (remote MCP server):</p>
+<p><code>https://voice.citrusworks.io/mcp</code></p>
+<p>No sign-in. Nothing you send is stored.</p>
+<p><a href="/">Try it in your browser instead &rarr;</a></p>
+</body></html>"""
+
+
 def _demo_page():
     """The try-it page at / for browsers. Same origin as /mcp, so no CORS needed."""
     global _DEMO
@@ -88,7 +100,9 @@ class Handler(BaseHTTPRequestHandler):
                     return self._send(200, _demo_page(), "text/html; charset=utf-8")
                 return self._send(200, b"voice-profile MCP server. POST JSON-RPC to /mcp. "
                                        b"Source: https://github.com/genideva/voice-profile-mcp\n", "text/plain")
-            return self._send(405, {"error": "Use POST for MCP requests."})
+            if "text/html" in (self.headers.get("Accept") or ""):   # a person clicked the endpoint link
+                return self._send(200, _ENDPOINT_PAGE, "text/html; charset=utf-8")
+            return self._send(405, {"error": "Use POST for MCP requests."})   # spec: no SSE stream offered
         self._send(404, {"error": "Not found"})
 
     def do_HEAD(self):                        # link checkers and unfurlers probe with HEAD
