@@ -26,9 +26,13 @@ _ENDPOINT_PAGE = b"""<!doctype html><html lang="en"><head><meta charset="utf-8">
 <style>body{font:17px/1.55 Georgia,serif;max-width:36em;margin:3em auto;padding:0 16px;color:#222;background:#fdfcf8}
 code{background:#eee;padding:2px 5px;border-radius:3px;word-break:break-all}a{color:#245}</style></head><body>
 <h1>This is an MCP server address</h1>
-<p>It is meant for an AI app, not a browser. To connect, add this URL as a custom connector (remote MCP server):</p>
+<p>It is meant for an AI app, not a browser. Add this URL as a custom connector (remote MCP server):</p>
 <p><code>https://voice.citrusworks.io/mcp</code></p>
-<p>No sign-in. Nothing you send is stored.</p>
+<ul>
+<li><b>ChatGPT:</b> Settings &rarr; Connectors &rarr; Create (developer mode), paste the URL, set authentication to none.</li>
+<li><b>Claude:</b> Settings &rarr; Connectors &rarr; Add custom connector, paste the URL.</li>
+</ul>
+<p>Then ask it to analyze a piece of your own writing. No sign-in. Nothing you send is stored.</p>
 <p><a href="/">Try it in your browser instead &rarr;</a></p>
 </body></html>"""
 
