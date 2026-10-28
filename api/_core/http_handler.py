@@ -58,7 +58,7 @@ class Handler(BaseHTTPRequestHandler):
         self.send_header("Cache-Control", "no-store")
         self._cors()
         self.end_headers()
-        if data:
+        if data and self.command != "HEAD":
             self.wfile.write(data)
 
     def _cors(self):
@@ -90,6 +90,9 @@ class Handler(BaseHTTPRequestHandler):
                                        b"Source: https://github.com/genideva/voice-profile-mcp\n", "text/plain")
             return self._send(405, {"error": "Use POST for MCP requests."})
         self._send(404, {"error": "Not found"})
+
+    def do_HEAD(self):                        # link checkers and unfurlers probe with HEAD
+        self.do_GET()
 
     def do_DELETE(self):
         self._send(405, {"error": "No sessions to delete; this server is stateless."})
